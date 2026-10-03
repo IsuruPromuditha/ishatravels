@@ -1,21 +1,24 @@
+import SigiriyaSlideImg from '../assets/images/Sigirya_Slide.jpg';
+import YalaSlideImg from '../assets/images/Yala_Slide.jpg';
+import MirissaSlideImg from '../assets/images/SouthCost_Slide.jpg'; 
 export const HERO_SLIDES = [
   {
     id: 1,
     title: 'Ayubowan! Welcome to Paradise Island Sri Lanka',
     tagline: 'Golden beaches, misty mountains, ancient kingdoms & timeless hospitality.',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1600&q=80',
+    image: MirissaSlideImg,
   },
   {
     id: 2,
     title: 'Explore Sigiriya — The 8th Wonder of the World',
     tagline: 'Discover an ancient rock fortress and the history of King Kashyapa.',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1600&q=80',
+    image: SigiriyaSlideImg,
   },
   {
     id: 3,
     title: 'Witness Wildlife in Yala National Park',
     tagline: 'Look for elephants, leopards, and other wildlife on a guided safari.',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1600&q=80',
+    image: YalaSlideImg,
   },
 ]
 
