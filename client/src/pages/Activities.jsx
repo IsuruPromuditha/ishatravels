@@ -1,4 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+// Hero Slider Data (Featured highlights)
+const heroSlides = [
+  {
+    id: 1,
+    title: "Experience Wild Sri Lanka",
+    subtitle: "Up-close leopard safaris and vast elephant gatherings in Yala & Minneriya",
+    image: "https://images.unsplash.com/photo-1544979590-37e9b47eb705?q=80&w=1200&auto=format&fit=crop",
+    tag: "Featured Adventure"
+  },
+  {
+    id: 2,
+    title: "Conquer the Ancient Citadel",
+    subtitle: "Ascend 200m above the jungle canopy at Sigiriya Lion Rock",
+    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?q=80&w=1200&auto=format&fit=crop",
+    tag: "UNESCO World Heritage"
+  },
+  {
+    id: 3,
+    title: "Journey Through Cloud Forests",
+    subtitle: "Take the iconic mountain train ride across Nine Arch Bridge in Ella",
+    image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1200&auto=format&fit=crop",
+    tag: "Scenic Transport"
+  }
+];
 
 const activitiesData = [
   {
@@ -121,26 +146,112 @@ const activitiesData = [
 ];
 
 const Activities = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // 3000ms Auto-slide timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? heroSlides.length - 1 : prev - 1));
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 px-5 py-10 font-sans">
-      {/* Header Section */}
-      <header className="text-center max-w-3xl mx-auto mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-sky-400 mb-3 tracking-tight">
+    <div className="min-h-screen bg-slate-900 text-slate-100 pb-16 font-sans">
+      
+      {/* Large Hero Slider Section (3000ms Timer) */}
+      <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden bg-slate-950 mb-12">
+        {heroSlides.map((slide, index) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
+          >
+            {/* Background Image with Dark Gradient Overlay */}
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-black/30" />
+
+            {/* Slide Content Overlay */}
+            <div className="absolute bottom-12 left-0 right-0 max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-start">
+              <span className="bg-sky-500 text-slate-950 font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+                {slide.tag}
+              </span>
+              <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-3 max-w-2xl drop-shadow-lg">
+                {slide.title}
+              </h1>
+              <p className="text-base md:text-xl text-slate-200 max-w-xl drop-shadow mb-6">
+                {slide.subtitle}
+              </p>
+              <button className="px-6 py-3 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105">
+                Discover Experience
+              </button>
+            </div>
+          </div>
+        ))}
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={handlePrevSlide}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-slate-900/60 hover:bg-slate-900 text-white p-3 rounded-full backdrop-blur-sm border border-slate-700 transition-colors"
+          aria-label="Previous Slide"
+        >
+          ❮
+        </button>
+        <button
+          onClick={handleNextSlide}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-slate-900/60 hover:bg-slate-900 text-white p-3 rounded-full backdrop-blur-sm border border-slate-700 transition-colors"
+          aria-label="Next Slide"
+        >
+          ❯
+        </button>
+
+        {/* Slide Indicator Dots */}
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+          {heroSlides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                currentSlide === idx ? "w-8 bg-sky-400" : "w-2.5 bg-slate-400/50"
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Main Section Header */}
+      <header className="text-center max-w-3xl mx-auto mb-10 px-5">
+        <h2 className="text-3xl md:text-4xl font-bold text-sky-400 mb-3 tracking-tight">
           Top 13 Outdoor Activities & Destinations
-        </h1>
-        <p className="text-base md:text-lg text-slate-400">
+        </h2>
+        <p className="text-sm md:text-base text-slate-400">
           Explore curated adventures, heritage sites, and wildlife excursions across Sri Lanka.
         </p>
       </header>
 
-      {/* Grid Layout */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+      {/* Grid Layout for All 13 Cards */}
+      <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
         {activitiesData.map((activity) => (
           <div
             key={activity.id}
             className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl flex flex-col hover:-translate-y-1 transition-transform duration-200 border border-slate-700/50"
           >
-            {/* Card Image Wrapper */}
+            {/* Card Image */}
             <div className="relative h-52 w-full overflow-hidden">
               <span className="absolute top-3 left-3 bg-sky-400 text-slate-950 font-bold rounded-full w-8 h-8 flex items-center justify-center text-sm z-10 shadow-md">
                 {activity.id}
@@ -155,7 +266,7 @@ const Activities = () => {
               </span>
             </div>
 
-            {/* Card Content Body */}
+            {/* Card Body */}
             <div className="p-5 flex flex-col flex-grow">
               <div className="flex justify-between items-center text-xs text-slate-400 mb-2">
                 <span className="font-medium truncate max-w-[70%]">
@@ -166,9 +277,9 @@ const Activities = () => {
                 </span>
               </div>
 
-              <h2 className="text-xl font-semibold text-slate-100 mb-2 line-clamp-1">
+              <h3 className="text-xl font-semibold text-slate-100 mb-2 line-clamp-1">
                 {activity.title}
-              </h2>
+              </h3>
 
               <p className="text-sm text-slate-300 leading-relaxed mb-5 flex-grow line-clamp-3">
                 {activity.description}
