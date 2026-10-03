@@ -1,61 +1,93 @@
-// src/components/home/DestinationSection.jsx
-import React, { useState } from 'react';
-import { DESTINATIONS } from '../../models/tourData';
+import React, { useEffect, useState } from 'react'
+import { DESTINATIONS } from '../../models/tourData'
+
+const SLIDES = DESTINATIONS.slice(0, 5)
 
 const DestinationSection = () => {
-  const [activeDest, setActiveDest] = useState(0);
+  const [activeDest, setActiveDest] = useState(0)
+
+  useEffect(() => {
+    if (SLIDES.length < 2) return
+
+    const intervalId = setInterval(() => {
+      setActiveDest((current) => (current + 1) % SLIDES.length)
+    }, 5000)
+
+    return () => clearInterval(intervalId)
+  }, [])
+
+  if (SLIDES.length === 0) return null
 
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10">
-          <div>
-            <span className="text-emerald-700 font-extrabold text-xs tracking-widest uppercase">Must-Visit Places</span>
-            <h2 className="text-3xl font-black text-slate-900 uppercase mt-1">Top Destinations in Sri Lanka</h2>
-          </div>
-          <p className="text-slate-500 text-xs max-w-md mt-2 md:mt-0">
-            From golden south-coast beaches to heritage temples in the central cultural triangle.
+    <section className="bg-slate-50 py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <header className="mb-10">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
+            Must-Visit Places
+          </span>
+          <h2 className="mt-1 text-3xl font-black uppercase text-slate-900">
+            Top Destinations in Sri Lanka
+          </h2>
+          <p className="mt-2 max-w-md text-sm text-slate-500">
+            From golden south-coast beaches to heritage temples in the central
+            cultural triangle.
           </p>
-        </div>
+        </header>
 
-        {/* Featured Destination Showcase */}
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl h-[450px]">
-          <img 
-            src={DESTINATIONS[activeDest].image} 
-            alt={DESTINATIONS[activeDest].title} 
-            className="w-full h-full object-cover" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent p-8 flex flex-col justify-end">
-            <h3 className="text-3xl font-black text-white mb-2">
-              {DESTINATIONS[activeDest].title}
-            </h3>
-            <p className="text-slate-200 text-sm max-w-2xl mb-6">
-              {DESTINATIONS[activeDest].description}
-            </p>
+        <div className="relative h-[450px] overflow-hidden rounded-2xl shadow-2xl">
+          <div
+            className="flex h-full transition-transform duration-700 ease-in-out"
+            style={{
+              width: `${SLIDES.length * 100}%`,
+              transform: `translateX(-${activeDest * (100 / SLIDES.length)}%)`,
+            }}
+          >
+            {SLIDES.map((destination) => (
+              <article
+                key={destination.id}
+                className="relative h-full"
+                style={{ width: `${100 / SLIDES.length}%` }}
+              >
+                <img
+                  src={destination.image}
+                  alt={destination.title}
+                  className="h-full w-full object-cover"
+                />
 
-            {/* Thumbnail selector */}
-            <div className="flex gap-4 overflow-x-auto pb-2">
-              {DESTINATIONS.map((item, idx) => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveDest(idx)}
-                  className={`flex-shrink-0 px-4 py-2 rounded-lg text-xs font-bold uppercase transition ${
-                    idx === activeDest 
-                      ? 'bg-amber-500 text-emerald-950' 
-                      : 'bg-white/20 text-white hover:bg-white/40'
-                  }`}
-                >
-                  {item.title.split(' ')[0]}
-                </button>
-              ))}
-            </div>
+                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent p-8 pb-24">
+                  <h3 className="mb-2 text-3xl font-black text-white">
+                    {destination.title}
+                  </h3>
+                  <p className="max-w-2xl text-sm text-slate-200">
+                    {destination.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="absolute bottom-5 left-8 right-8 flex gap-3 overflow-x-auto">
+            {SLIDES.map((destination, index) => (
+              <button
+                key={destination.id}
+                type="button"
+                onClick={() => setActiveDest(index)}
+                aria-label={`Show ${destination.title}`}
+                aria-pressed={index === activeDest}
+                className={`shrink-0 rounded-lg px-4 py-2 text-xs font-bold uppercase transition-colors ${
+                  index === activeDest
+                    ? 'bg-amber-500 text-emerald-950'
+                    : 'bg-white/20 text-white hover:bg-white/40'
+                }`}
+              >
+                {destination.title.split(' ')[0]}
+              </button>
+            ))}
           </div>
         </div>
-
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default DestinationSection;
+export default DestinationSection
