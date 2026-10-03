@@ -1,23 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import WildLife_tiger from '../../assets/images/WildLife_tiger.jpg';
+import RelaxBeach from '../../assets/images/RelaxBeach.jpg';
+import AncianCity from '../../assets/images/AncianCity.webp'
 
 const ACTIVITIES = [
   {
     title: 'Relax on the beaches',
     description: 'Discover the island’s beautiful southern and eastern coastlines.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80',
+    image: RelaxBeach,
     path: '/destinations',
   },
   {
     title: 'Explore ancient sites',
     description: 'Visit historic landmarks including Sigiriya and the cultural triangle.',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=900&q=80',
+    image: AncianCity,
     path: '/destinations',
   },
   {
     title: 'Experience wildlife',
     description: 'Take a safari and look for elephants and other native wildlife.',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=900&q=80',
+    image:WildLife_tiger,
     path: '/destinations',
   },
   {

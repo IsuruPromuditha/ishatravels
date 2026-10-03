@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { DESTINATIONS } from '../../models/tourData'
 
+
 const SLIDES = DESTINATIONS.slice(0, 5)
 
 const DestinationSection = () => {

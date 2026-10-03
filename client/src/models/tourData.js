@@ -1,21 +1,39 @@
+import SigiriyaSlideImg from '../assets/images/Sigirya_Slide.jpg';
+import YalaSlideImg from '../assets/images/Yala_Slide.jpg';
+import MirissaSlideImg from '../assets/images/SouthCost_Slide.jpg'; 
+import YalaNational_park from '../assets/images/YalaNational_park.jpg';
+import SigiriRock from '../assets/images/SigiriRock.jpg';
+import Galledude from '../assets/images/Galledude.jpg';
+import NineArch from '../assets/images/NineArch.jpg';
+import MirissaBeach from '../assets/images/MirissaBeach.jpg';
+import HillCountry from '../assets/images/HillCountry.png';
+import WildSafary from '../assets/images/WildSafary.jpg';
+import ClassicSrilanka from '../assets/images/ClassicSrilanka.jpg';
+import Whalewatchin from '../assets/images/Whalewatchin.jpg';
+
+
+
+
+
+
 export const HERO_SLIDES = [
   {
     id: 1,
     title: 'Ayubowan! Welcome to Paradise Island Sri Lanka',
     tagline: 'Golden beaches, misty mountains, ancient kingdoms & timeless hospitality.',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1600&q=80',
+    image: MirissaSlideImg,
   },
   {
     id: 2,
     title: 'Explore Sigiriya — The 8th Wonder of the World',
     tagline: 'Discover an ancient rock fortress and the history of King Kashyapa.',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1600&q=80',
+    image: SigiriyaSlideImg,
   },
   {
     id: 3,
     title: 'Witness Wildlife in Yala National Park',
     tagline: 'Look for elephants, leopards, and other wildlife on a guided safari.',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1600&q=80',
+    image: YalaSlideImg,
   },
 ]
 
@@ -61,35 +79,35 @@ export const DESTINATIONS = [
     title: 'Ella & Nine Arch Bridge',
     description:
       'Explore misty highland views, hiking trails, tea plantations, and the iconic Nine Arch Bridge.',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=80',
+    image: NineArch,
   },
   {
     id: 2,
     title: 'Galle Dutch Fort',
     description:
       'Walk the historic ramparts, discover colonial-era architecture, and visit independent shops and cafés.',
-    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?auto=format&fit=crop&w=1200&q=80',
+    image: Galledude,
   },
   {
     id: 3,
     title: 'Mirissa Coral Coast',
     description:
       'Spend time by the beach, enjoy local cafés, and explore the southern coastline.',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    image: MirissaBeach,
   },
   {
     id: 4,
     title: 'Sigiriya Rock Fortress',
     description:
       'Visit the ancient rock fortress, its surrounding gardens, and nearby cultural sites.',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=80',
+    image: SigiriRock,
   },
   {
     id: 5,
     title: 'Yala National Park',
     description:
       'Explore diverse habitats and look for Sri Lankan wildlife during a guided park safari.',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80',
+    image: YalaNational_park,
   },
 ]
 
@@ -102,7 +120,7 @@ export const OFFERS = [
     originalPrice: '$1,200',
     offerPrice: '$899',
     validTill: 'November 30, 2026',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80',
+    image: HillCountry,
     description:
       'Discover ancient heritage, scenic tea country, and memorable highland landscapes on a week-long guided trip.',
     itinerary: ['Sigiriya', 'Kandy', 'Nuwara Eliya', 'Ella'],
@@ -127,7 +145,7 @@ export const OFFERS = [
     originalPrice: '$950',
     offerPrice: '$760',
     validTill: 'December 15, 2026',
-    image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80',
+    image: WildSafary,
     description:
       'Combine a guided wildlife experience with time to relax along Sri Lanka’s southern coast.',
     itinerary: ['Yala', 'Tangalle', 'Mirissa', 'Galle'],
@@ -153,7 +171,7 @@ export const OFFERS = [
     originalPrice: '$1,400',
     offerPrice: '$1,190',
     validTill: 'December 31, 2026',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+    image: ClassicSrilanka,
     description:
       'A first-time visitor itinerary connecting cultural landmarks, hill-country scenery, and the coast.',
     itinerary: ['Negombo', 'Sigiriya', 'Kandy', 'Ella', 'Galle'],
@@ -179,7 +197,7 @@ export const OFFERS = [
     originalPrice: '$780',
     offerPrice: '$702',
     validTill: 'January 15, 2027',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    image: Whalewatchin,
     description:
       'Enjoy a relaxed coastal getaway with beach time, a Galle visit, and an optional seasonal whale-watching trip.',
     itinerary: ['Galle', 'Unawatuna', 'Mirissa'],
