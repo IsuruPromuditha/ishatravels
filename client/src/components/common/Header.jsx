@@ -1,47 +1,44 @@
-// src/components/common/Header.jsx
-import React, { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  // Helper function for active NavLink styling
   const navLinkClass = ({ isActive }) =>
-    `relative text-xs uppercase tracking-widest font-bold transition-colors duration-200 py-1 ${
+    `relative py-2 text-xs font-bold uppercase tracking-widest transition-colors ${
       isActive
-        ? 'text-amber-400 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 after:rounded-full'
-        : 'text-emerald-100 hover:text-amber-300'
-    }`;
+        ? 'text-amber-300 after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:rounded-full after:bg-amber-300'
+        : 'text-slate-300 hover:text-emerald-300'
+    }`
 
   const mobileNavLinkClass = ({ isActive }) =>
-    `block px-4 py-2.5 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors ${
+    `block rounded-xl px-4 py-3 text-sm font-bold uppercase tracking-wider transition-colors ${
       isActive
-        ? 'bg-amber-500 text-emerald-950'
-        : 'text-emerald-100 hover:bg-emerald-800/60 hover:text-white'
-    }`;
+        ? 'bg-emerald-400/10 text-amber-300'
+        : 'text-slate-300 hover:bg-white/5 hover:text-white'
+    }`
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false)
 
   return (
-    <header className="sticky top-0 z-50 bg-emerald-950/90 backdrop-blur-md border-b border-emerald-800/40 shadow-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          
-          {/* Brand Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center text-xl shadow-md group-hover:scale-105 transition-transform">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 shadow-xl shadow-black/20 backdrop-blur-xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
+          <Link to="/" onClick={closeMobileMenu} className="group flex items-center gap-3">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-emerald-300 to-emerald-600 text-xl shadow-lg shadow-emerald-950/40 transition-transform group-hover:scale-105">
               🇱🇰
-            </div>
-            <div>
-              <span className="text-lg sm:text-xl font-black tracking-wider text-amber-400 block uppercase leading-none group-hover:text-amber-300 transition-colors">
+            </span>
+            <span>
+              <span className="block text-base font-black uppercase leading-none tracking-wider text-amber-300 transition-colors group-hover:text-amber-200 sm:text-lg">
                 Love Sri Lanka
               </span>
-              <span className="text-[10px] text-emerald-300 font-semibold tracking-widest uppercase block mt-1">
+              <span className="mt-1 block text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Official Travel Portal
               </span>
-            </div>
+            </span>
           </Link>
 
-          {/* Desktop Navigation Menu */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
             <NavLink to="/" className={navLinkClass}>Home</NavLink>
             <NavLink to="/destinations" className={navLinkClass}>Destinations</NavLink>
             <NavLink to="/packages" className={navLinkClass}>Tour Packages</NavLink>
@@ -50,60 +47,56 @@ const Header = () => {
             <NavLink to="/offers" className={navLinkClass}>Offers</NavLink>
           </nav>
 
-          {/* Desktop Action Button */}
-          <div className="hidden md:flex items-center gap-3">
-            <a 
-              href="#booking-form" 
-              className="bg-amber-500 hover:bg-amber-400 text-emerald-950 px-5 py-2.5 rounded-full font-black text-xs uppercase tracking-wider shadow-lg shadow-amber-500/10 hover:shadow-amber-500/25 active:scale-95 transition-all duration-200"
-            >
-              Book Your Tour
-            </a>
-          </div>
+          <a
+            href="#booking-form"
+            className="hidden rounded-full bg-emerald-400 px-5 py-3 text-xs font-black uppercase tracking-wider text-slate-950 shadow-lg shadow-emerald-950/30 transition hover:-translate-y-0.5 hover:bg-emerald-300 hover:shadow-emerald-400/20 focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2 focus:ring-offset-slate-950 md:inline-flex"
+          >
+            Book Your Tour <span className="ml-2" aria-hidden="true">→</span>
+          </a>
 
-          {/* Mobile Hamburger Button */}
-          <div className="flex md:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              type="button"
-              className="p-2 rounded-lg text-emerald-200 hover:text-white hover:bg-emerald-900 focus:outline-none"
-              aria-label="Toggle Navigation Menu"
-            >
-              <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path fillRule="evenodd" clipRule="evenodd" d="M18.278 16.864a1 1 0 01-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 01-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 011.414-1.414l4.829 4.828 4.828-4.828a1 1 0 111.414 1.414l-4.828 4.829 4.828 4.828z" />
-                ) : (
-                  <path fillRule="evenodd" d="M4 5h16a1 1 0 010 2H4a1 1 0 110-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2zm0 6h16a1 1 0 010 2H4a1 1 0 010-2z" />
-                )}
-              </svg>
-            </button>
-          </div>
-
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen((open) => !open)}
+            className="rounded-xl border border-white/10 bg-white/5 p-2.5 text-slate-200 transition hover:border-emerald-400/40 hover:bg-emerald-400/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-emerald-400 lg:hidden"
+            aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isMobileMenuOpen}
+          >
+            <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+              {isMobileMenuOpen ? (
+                <path d="M18.3 5.7a1 1 0 0 0-1.4 0L12 10.6 7.1 5.7a1 1 0 0 0-1.4 1.4l4.9 4.9-4.9 4.9a1 1 0 1 0 1.4 1.4l4.9-4.9 4.9 4.9a1 1 0 0 0 1.4-1.4L13.4 12l4.9-4.9a1 1 0 0 0 0-1.4Z" />
+              ) : (
+                <path d="M4 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm0 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm0 6a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Z" />
+              )}
+            </svg>
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-emerald-950 border-b border-emerald-800/60 px-4 pt-2 pb-6 space-y-2 animate-fadeIn">
-          <NavLink to="/" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>Home</NavLink>
-          <NavLink to="/destinations" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>Destinations</NavLink>
-          <NavLink to="/packages" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>Tour Packages</NavLink>
-          <NavLink to="/itineraries" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>Itineraries</NavLink>
-          <NavLink to="/events" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>Events</NavLink>
-          <NavLink to="/offers" onClick={() => setIsMobileMenuOpen(false)} className={mobileNavLinkClass}>Offers</NavLink>
-          
-          <div className="pt-4 border-t border-emerald-900">
-            <a 
+        <nav
+          className="border-t border-white/10 bg-slate-950 px-4 py-4 shadow-2xl lg:hidden"
+          aria-label="Mobile navigation"
+        >
+          <div className="mx-auto max-w-7xl space-y-1">
+            <NavLink to="/" onClick={closeMobileMenu} className={mobileNavLinkClass}>Home</NavLink>
+            <NavLink to="/destinations" onClick={closeMobileMenu} className={mobileNavLinkClass}>Destinations</NavLink>
+            <NavLink to="/packages" onClick={closeMobileMenu} className={mobileNavLinkClass}>Tour Packages</NavLink>
+            <NavLink to="/itineraries" onClick={closeMobileMenu} className={mobileNavLinkClass}>Itineraries</NavLink>
+            <NavLink to="/events" onClick={closeMobileMenu} className={mobileNavLinkClass}>Events</NavLink>
+            <NavLink to="/offers" onClick={closeMobileMenu} className={mobileNavLinkClass}>Offers</NavLink>
+
+            <a
               href="#booking-form"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block w-full text-center bg-amber-500 hover:bg-amber-400 text-emerald-950 font-black py-3 rounded-lg text-xs uppercase tracking-wider shadow"
+              onClick={closeMobileMenu}
+              className="mt-3 block rounded-xl bg-emerald-400 px-4 py-3 text-center text-xs font-black uppercase tracking-wider text-slate-950 transition hover:bg-emerald-300"
             >
-              Book Your Tour
+              Book Your Tour →
             </a>
           </div>
-        </div>
+        </nav>
       )}
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
