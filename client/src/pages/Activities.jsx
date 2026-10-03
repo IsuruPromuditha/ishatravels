@@ -1,154 +1,343 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
-// Hero Slider Data (Featured highlights)
+import Activity from '../assets/images/Activities/Activity.jpg';
+import Activity1 from '../assets/images/Activities/Activity1.jpg';
+import Activity2 from '../assets/images/Activities/Activity2.jpg';
+
+// Hero Slider Data (UNTOUCHED)
 const heroSlides = [
   {
     id: 1,
     title: "Experience Wild Sri Lanka",
     subtitle: "Up-close leopard safaris and vast elephant gatherings in Yala & Minneriya",
-    image: "https://images.unsplash.com/photo-1544979590-37e9b47eb705?q=80&w=1200&auto=format&fit=crop",
+    image: Activity,
     tag: "Featured Adventure"
   },
   {
     id: 2,
     title: "Conquer the Ancient Citadel",
     subtitle: "Ascend 200m above the jungle canopy at Sigiriya Lion Rock",
-    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?q=80&w=1200&auto=format&fit=crop",
+    image: Activity1,
     tag: "UNESCO World Heritage"
   },
   {
     id: 3,
     title: "Journey Through Cloud Forests",
     subtitle: "Take the iconic mountain train ride across Nine Arch Bridge in Ella",
-    image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1200&auto=format&fit=crop",
+    image: Activity2,
     tag: "Scenic Transport"
   }
 ];
 
-const activitiesData = [
+const img = (id) => `https://images.unsplash.com/${id}?q=80&w=1000&auto=format&fit=crop`;
+
+// Activities grouped into the 5 categories (given order)
+const categories = [
   {
-    id: 1,
-    title: "Climb Sigiriya Lion Rock",
-    location: "Sigiriya, Central Province",
-    description: "Ascend the 200-meter-high ancient rock fortress built by King Kashyapa in the 5th century. Discover famous mirror wall frescoes and ancient water gardens at the summit.",
-    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?q=80&w=1000&auto=format&fit=crop",
-    category: "Adventure & Heritage",
-    rating: 4.9
+    key: "water",
+    name: "Water Sports & Ocean Adventures",
+    emoji: "🌊",
+    items: [
+      {
+        title: "Surfing",
+        location: "Weligama, Arugam Bay & Hikkaduwa",
+        description: "World-class point breaks and reef breaks for all skill levels (beginner waves in Weligama; reef/point breaks in Arugam Bay and Hikkaduwa).",
+        image: img("photo-1502680390469-be75c86b636f")
+      },
+      {
+        title: "Scuba Diving & Snorkeling",
+        location: "Pigeon Island, Hikkaduwa & Trincomalee",
+        description: "Shipwreck dives, coral reef exploration, and swimming with blacktip reef sharks or sea turtles (Pigeon Island, Hikkaduwa, Trincomalee).",
+        image: img("photo-1544551763-46a013bb70d5")
+      },
+      {
+        title: "Whale & Dolphin Watching",
+        location: "Mirissa, Kalpitiya & Trincomalee",
+        description: "Spotting Blue Whales, Sperm Whales, and spinner dolphins on ocean boat charters (Mirissa, Kalpitiya, Trincomalee).",
+        image: img("photo-1568430462629-a861758d7839")
+      },
+      {
+        title: "Kitesurfing",
+        location: "Kalpitiya Peninsula",
+        description: "High-wind lagoon and open-ocean kitesurfing for beginners and pros (Kalpitiya Peninsula).",
+        image: img("photo-1516834474-48c0abc2a902")
+      },
+      {
+        title: "White Water Rafting",
+        location: "Kitulgala",
+        description: "Navigating Class II–IV rapids through jungle rivers (Kitulgala).",
+        image: img("photo-1530866495561-507c9faab2ed")
+      }
+    ]
   },
   {
-    id: 2,
-    title: "Safari at Yala National Park",
-    location: "Yala, Southern Province",
-    description: "Embark on an exciting 4x4 jeep safari through dense scrubland to spot Sri Lankan leopards, sloth bears, wild elephants, and vibrant endemic bird species.",
-    image: "https://images.unsplash.com/photo-1544979590-37e9b47eb705?q=80&w=1000&auto=format&fit=crop",
-    category: "Wildlife & Nature",
-    rating: 4.8
+    key: "wildlife",
+    name: "Wildlife & Nature Photography",
+    emoji: "🐆",
+    items: [
+      {
+        title: "4x4 Jeep Safaris",
+        location: "Yala, Wilpattu & Udawalawe",
+        description: "Wildlife tracking and telephoto photography targeting leopards, Asian elephants, sloth bears, and crocodiles (Yala, Wilpattu, Udawalawe).",
+        image: img("photo-1544979590-37e9b47eb705")
+      },
+      {
+        title: "Elephant Gathering Tracking",
+        location: "Minneriya & Kaudulla",
+        description: "Observing herds of up to 300 wild elephants congregating around reservoir shores (Minneriya & Kaudulla).",
+        image: img("photo-1557050543-4d5f4e07ef46")
+      },
+      {
+        title: "Bird Watching Tours",
+        location: "Sinharaja Forest Reserve & Bundala",
+        description: "Spotting endemic birds, hornbills, and migratory species in tropical rainforests (Sinharaja Forest Reserve, Bundala).",
+        image: img("photo-1511497584788-876761c11969")
+      }
+    ]
   },
   {
-    id: 3,
-    title: "Nine Arch Bridge & Ella Train Ride",
-    location: "Ella, Uva Province",
-    description: "Experience one of the world's most scenic train journeys winding through emerald tea plantations, crossing the iconic colonial-era Nine Arch Bridge in Ella.",
-    image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1000&auto=format&fit=crop",
-    category: "Sightseeing & Transit",
-    rating: 4.9
+    key: "hiking",
+    name: "Hiking, Trekking & Aerial Sports",
+    emoji: "🥾",
+    items: [
+      {
+        title: "High-Altitude Trekking",
+        location: "Pekoe Trail, Ella Rock & Horton Plains",
+        description: "Ridge walking and cloud-forest hiking through tea country peaks (Pekoe Trail, Ella Rock, Horton Plains / World's End).",
+        image: img("photo-1589308078059-be1415eab4c3")
+      },
+      {
+        title: "Night Pilgrimage Hikes",
+        location: "Adam's Peak / Sri Pada",
+        description: "Overnight stair climbs to catch sunrise above cloud level (Adam’s Peak / Sri Pada).",
+        image: img("photo-1506744038136-46273834b3fb")
+      },
+      {
+        title: "Scenic Train Rides",
+        location: "Kandy to Ella line",
+        description: "Open-window train journeys winding through misty tea plantations and viaduct bridges (Kandy to Ella line).",
+        image: img("photo-1546708973-b339540b5162")
+      },
+      {
+        title: "Hot Air Ballooning",
+        location: "Sigiriya / Dambulla",
+        description: "Sunrise flights over ancient rock fortresses, lakes, and jungle canopies (Sigiriya / Dambulla).",
+        image: img("photo-1507608616759-54f48f0af0ee")
+      }
+    ]
   },
   {
-    id: 4,
-    title: "Surfing at Arugam Bay",
-    location: "Arugam Bay, Eastern Province",
-    description: "Catch world-class point break waves at Main Point or enjoy gentle beach breaks for beginners along the relaxed east coast surfing haven.",
-    image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1000&auto=format&fit=crop",
-    category: "Water Sports",
-    rating: 4.7
+    key: "culture",
+    name: "Music, Nightlife & Culture",
+    emoji: "🥁",
+    items: [
+      {
+        title: "Coastal Music Events & Beach Parties",
+        location: "South Coast & East Coast",
+        description: "Sun-downer DJ sets, underground progressive/organic house parties, and live acoustic beach sessions (South Coast & East Coast strips).",
+        image: img("photo-1516450360452-9312f5e86fc7")
+      },
+      {
+        title: "Traditional Drumming & Kandyan Dance",
+        location: "Kandy & Colombo",
+        description: "Experiencing live Perahera processions, traditional drumming performances, and fire-walking rites (Kandy, Colombo).",
+        image: img("photo-1552465011-b4e21bf6e79a")
+      },
+      {
+        title: "Street Food & Night Market Walks",
+        location: "Night street markets",
+        description: "Tasting kottu roti, hoppers, and fresh seafood cooked live at night street markets.",
+        image: img("photo-1504674900247-0877df9cc836")
+      }
+    ]
   },
   {
-    id: 5,
-    title: "Hike Little Adam's Peak",
-    location: "Ella, Uva Province",
-    description: "A gentle yet rewarding trek winding through lush tea gardens to a spectacular mountain peak offering panoramic views of Ella Gap and valley below.",
-    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=1000&auto=format&fit=crop",
-    category: "Trekking & Hiking",
-    rating: 4.8
-  },
-  {
-    id: 6,
-    title: "Explore Historic Galle Fort",
-    location: "Galle, Southern Province",
-    description: "Walk along the 17th-century Dutch ramparts, explore cobblestone alleys filled with chic boutiques, colonial villas, cozy cafes, and sunset views over the ocean.",
-    image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1000&auto=format&fit=crop",
-    category: "Culture & History",
-    rating: 4.9
-  },
-  {
-    id: 7,
-    title: "Trek Sinharaja Rain Forest",
-    location: "Deniyaya / Kalawana",
-    description: "Guided jungle trekking through a UNESCO World Heritage tropical rainforest, home to rare endemic birds, reptiles, amphibians, and dense canopy trails.",
-    image: "https://images.unsplash.com/photo-1511497584788-876761c11969?q=80&w=1000&auto=format&fit=crop",
-    category: "Eco-Adventure",
-    rating: 4.8
-  },
-  {
-    id: 8,
-    title: "Night Pilgrimage up Adam's Peak",
-    location: "Nallathanniya, Central Highlands",
-    description: "Climb 5,500 stone steps under illuminated mountain paths to reach the sacred summit footprint before catching a breathtaking sunrise above the cloud layer.",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop",
-    category: "Pilgrimage & Trekking",
-    rating: 4.9
-  },
-  {
-    id: 9,
-    title: "Diyaluma Falls Natural Pool Dip",
-    location: "Koslanda, Badulla District",
-    description: "Hike to the top of Sri Lanka's second-highest waterfall to swim in cascading natural infinity pools perched edge-of-the-cliff above the surrounding valleys.",
-    image: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1000&auto=format&fit=crop",
-    category: "Nature & Swimming",
-    rating: 4.7
-  },
-  {
-    id: 10,
-    title: "Polonnaruwa Ancient City Bike Tour",
-    location: "Polonnaruwa, North Central Province",
-    description: "Rent a bicycle to explore sprawling ruins of 12th-century palaces, massive stupas, and the majestic rock-carved Buddha statues at Gal Vihara.",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
-    category: "Heritage & Cycling",
-    rating: 4.8
-  },
-  {
-    id: 11,
-    title: "Dambulla Cave Temple Exploration",
-    location: "Dambulla, Matale District",
-    description: "Step inside five cave sanctuaries cut into a massive granite cliff, housing over 150 serene Buddha statues and intricate ancient wall murals.",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1000&auto=format&fit=crop",
-    category: "Culture & Art",
-    rating: 4.8
-  },
-  {
-    id: 12,
-    title: "Hot Air Ballooning in Sigiriya",
-    location: "Dambulla / Sigiriya",
-    description: "Soar above central Sri Lanka at sunrise for uninterrupted aerial views of lush forests, ancient reservoirs, and the striking silhouette of Sigiriya Rock.",
-    image: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1000&auto=format&fit=crop",
-    category: "Aerial & Leisure",
-    rating: 4.9
-  },
-  {
-    id: 13,
-    title: "Snorkeling at Pigeon Island",
-    location: "Nilaveli, Trincomalee",
-    description: "Take a boat out to a marine national park to swim alongside blacktip reef sharks, hawksbill sea turtles, and vibrant coral reef ecosystems.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop",
-    category: "Marine & Snorkeling",
-    rating: 4.8
+    key: "wellness",
+    name: "Wellness, Culinary & Local Experiences",
+    emoji: "🍵",
+    items: [
+      {
+        title: "Ayurvedic Spa & Wellness Retreats",
+        location: "Bentota, Kandy & Tangalle",
+        description: "Traditional herbal steam baths, oil massages (Abhyanga), and yoga retreats.",
+        image: img("photo-1540555700478-4be289fbecef")
+      },
+      {
+        title: "Sri Lankan Cooking Masterclasses",
+        location: "Ella, Galle & Sigiriya",
+        description: "Farm-to-table culinary experiences learning to prepare authentic spice blends and clay-pot curries.",
+        image: img("photo-1556910103-1c02745aae4d")
+      },
+      {
+        title: "Tea Tasting & Factory Tours",
+        location: "Nuwara Eliya & Hatton",
+        description: "Plucking tea leaves with estate workers and tasting single-origin Ceylon tea grades in hill-country factories.",
+        image: img("photo-1576092768241-dec231879fc3")
+      }
+    ]
   }
 ];
 
+// Flatten once, keeping category order and giving every card a stable id
+const allActivities = categories.flatMap((cat) =>
+  cat.items.map((item, i) => ({
+    ...item,
+    id: `${cat.key}-${i + 1}`,
+    categoryKey: cat.key,
+    categoryName: cat.name,
+    categoryEmoji: cat.emoji
+  }))
+);
+
+// Reusable activity card
+const ActivityCard = ({ activity, isFavourite, onToggleFavourite, onOpen }) => (
+  <article className="group bg-white rounded-2xl overflow-hidden border border-black/10 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
+    {/* Image */}
+    <div className="relative h-56 overflow-hidden bg-slate-200">
+      <img
+        src={activity.image}
+        alt={activity.title}
+        loading="lazy"
+        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent" />
+
+      {/* Category badge */}
+      <span className="absolute top-3 left-3 bg-white/95 text-black text-xs font-semibold px-3 py-1 rounded-full shadow">
+        {activity.categoryEmoji} {activity.categoryName.split(" & ")[0]}
+      </span>
+
+      {/* Favourite toggle */}
+      <button
+        onClick={() => onToggleFavourite(activity.id)}
+        aria-pressed={isFavourite}
+        aria-label={isFavourite ? `Remove ${activity.title} from favourites` : `Save ${activity.title} to favourites`}
+        className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/95 shadow flex items-center justify-center text-lg hover:scale-110 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+      >
+        <span className={isFavourite ? "text-red-500" : "text-black/50"}>
+          {isFavourite ? "♥" : "♡"}
+        </span>
+      </button>
+
+      {/* Location on image */}
+      <span className="absolute bottom-3 left-3 right-3 text-white text-sm font-medium drop-shadow truncate">
+        📍 {activity.location}
+      </span>
+    </div>
+
+    {/* Body */}
+    <div className="p-5 flex flex-col flex-grow">
+      <h3 className="text-xl font-bold text-black mb-2">{activity.title}</h3>
+      <p className="text-sm text-black/80 leading-relaxed mb-5 flex-grow">
+        {activity.description}
+      </p>
+      <button
+        onClick={() => onOpen(activity)}
+        className="w-full py-2.5 bg-black hover:bg-slate-800 text-white text-sm font-semibold rounded-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black"
+      >
+        Explore Details
+      </button>
+    </div>
+  </article>
+);
+
+// Pop-up window with full activity details
+const ActivityModal = ({ activity, isFavourite, onToggleFavourite, onClose }) => {
+  // Close on Escape + lock background scroll while open
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  const places = activity.location.split(/,|&|\//).map((p) => p.trim()).filter(Boolean);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="activity-modal-title"
+    >
+      <div
+        className="relative bg-white text-black w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          aria-label="Close details"
+          className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-white/95 shadow flex items-center justify-center text-xl text-black hover:bg-black hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+        >
+          ✕
+        </button>
+
+        {/* Image */}
+        <div className="relative h-64 md:h-80 bg-slate-200">
+          <img src={activity.image} alt={activity.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 to-transparent" />
+          <span className="absolute bottom-4 left-5 bg-white/95 text-black text-xs font-semibold px-3 py-1 rounded-full shadow">
+            {activity.categoryEmoji} {activity.categoryName}
+          </span>
+        </div>
+
+        {/* Details */}
+        <div className="p-6 md:p-8">
+          <h3 id="activity-modal-title" className="text-2xl md:text-3xl font-bold mb-4">
+            {activity.title}
+          </h3>
+
+          <div className="mb-5">
+            <p className="text-sm font-semibold mb-2">📍 Where</p>
+            <div className="flex flex-wrap gap-2">
+              {places.map((place) => (
+                <span key={place} className="text-sm border border-black/20 rounded-full px-3 py-1">
+                  {place}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mb-8">
+            <p className="text-sm font-semibold mb-2">About this experience</p>
+            <p className="text-base leading-relaxed text-black/80">{activity.description}</p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => onToggleFavourite(activity.id)}
+              aria-pressed={isFavourite}
+              className="flex-1 py-3 rounded-lg border border-black text-sm font-semibold hover:bg-black hover:text-white transition-colors"
+            >
+              {isFavourite ? "♥ Saved to favourites" : "♡ Save to favourites"}
+            </button>
+            <button
+              onClick={onClose}
+              className="flex-1 py-3 rounded-lg bg-black text-white text-sm font-semibold hover:bg-slate-800 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Activities = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [favourites, setFavourites] = useState([]);
+  const [selectedActivity, setSelectedActivity] = useState(null);
+  const closeModal = useCallback(() => setSelectedActivity(null), []);
 
-  // 3000ms Auto-slide timer
+  // 3000ms Hero Slider Auto-slide timer (UNTOUCHED)
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -165,10 +354,18 @@ const Activities = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
   };
 
+  const toggleFavourite = (id) =>
+    setFavourites((prev) => (prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]));
+
+  const visibleActivities = useMemo(
+    () => (activeCategory === "all" ? allActivities : allActivities.filter((a) => a.categoryKey === activeCategory)),
+    [activeCategory]
+  );
+
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 pb-16 font-sans">
-      
-      {/* Large Hero Slider Section (3000ms Timer) */}
+    <div className="min-h-screen bg-white text-black pb-20 font-sans">
+
+      {/* Large Hero Slider Section (UNTOUCHED) */}
       <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden bg-slate-950 mb-12">
         {heroSlides.map((slide, index) => (
           <div
@@ -177,7 +374,6 @@ const Activities = () => {
               index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           >
-            {/* Background Image with Dark Gradient Overlay */}
             <img
               src={slide.image}
               alt={slide.title}
@@ -185,7 +381,6 @@ const Activities = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-black/30" />
 
-            {/* Slide Content Overlay */}
             <div className="absolute bottom-12 left-0 right-0 max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-start">
               <span className="bg-sky-500 text-slate-950 font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-3">
                 {slide.tag}
@@ -203,7 +398,6 @@ const Activities = () => {
           </div>
         ))}
 
-        {/* Navigation Arrows */}
         <button
           onClick={handlePrevSlide}
           className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-slate-900/60 hover:bg-slate-900 text-white p-3 rounded-full backdrop-blur-sm border border-slate-700 transition-colors"
@@ -219,7 +413,6 @@ const Activities = () => {
           ❯
         </button>
 
-        {/* Slide Indicator Dots */}
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-3">
           {heroSlides.map((_, idx) => (
             <button
@@ -235,63 +428,67 @@ const Activities = () => {
       </div>
 
       {/* Main Section Header */}
-      <header className="text-center max-w-3xl mx-auto mb-10 px-5">
-        <h2 className="text-3xl md:text-4xl font-bold text-sky-400 mb-3 tracking-tight">
-          Top 13 Outdoor Activities & Destinations
+      <header className="text-center max-w-3xl mx-auto mb-8 px-5">
+        <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
+          Outdoor Activities & Experiences
         </h2>
-        <p className="text-sm md:text-base text-slate-400">
-          Explore curated adventures, heritage sites, and wildlife excursions across Sri Lanka.
+        <p className="text-sm md:text-base text-black/70">
+          Explore adventures, wildlife, mountain trails, culture, and local flavours across Sri Lanka.
         </p>
       </header>
 
-      {/* Grid Layout for All 13 Cards */}
-      <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-        {activitiesData.map((activity) => (
-          <div
-            key={activity.id}
-            className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl flex flex-col hover:-translate-y-1 transition-transform duration-200 border border-slate-700/50"
-          >
-            {/* Card Image */}
-            <div className="relative h-52 w-full overflow-hidden">
-              <span className="absolute top-3 left-3 bg-sky-400 text-slate-950 font-bold rounded-full w-8 h-8 flex items-center justify-center text-sm z-10 shadow-md">
-                {activity.id}
-              </span>
-              <img
-                src={activity.image}
-                alt={activity.title}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-              />
-              <span className="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm text-sky-400 text-xs font-semibold px-3 py-1 rounded-full border border-sky-400/20">
-                {activity.category}
-              </span>
-            </div>
-
-            {/* Card Body */}
-            <div className="p-5 flex flex-col flex-grow">
-              <div className="flex justify-between items-center text-xs text-slate-400 mb-2">
-                <span className="font-medium truncate max-w-[70%]">
-                  📍 {activity.location}
-                </span>
-                <span className="font-semibold text-amber-400 flex items-center gap-1">
-                  ⭐ {activity.rating}
-                </span>
-              </div>
-
-              <h3 className="text-xl font-semibold text-slate-100 mb-2 line-clamp-1">
-                {activity.title}
-              </h3>
-
-              <p className="text-sm text-slate-300 leading-relaxed mb-5 flex-grow line-clamp-3">
-                {activity.description}
-              </p>
-
-              <button className="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold rounded-lg shadow transition-colors duration-150">
-                Explore Details
+      {/* Category filter chips */}
+      <div className="max-w-7xl mx-auto px-5 mb-10">
+        <div className="overflow-x-auto pb-2">
+        <div className="flex flex-nowrap gap-2.5 w-max mx-auto" role="tablist" aria-label="Filter activities by category">
+          {[{ key: "all", name: "All Activities", emoji: "✨" }, ...categories].map((cat) => {
+            const isActive = activeCategory === cat.key;
+            return (
+              <button
+                key={cat.key}
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActiveCategory(cat.key)}
+                className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold border transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black ${
+                  isActive
+                    ? "bg-black text-white border-black"
+                    : "bg-white text-black border-black/20 hover:border-black"
+                }`}
+              >
+                {cat.emoji} {cat.name}
               </button>
-            </div>
-          </div>
+            );
+          })}
+        </div>
+        </div>
+        <p className="text-center text-sm text-black/60 mt-4">
+          Showing {visibleActivities.length} activities
+          {favourites.length > 0 && ` · ${favourites.length} saved`}
+        </p>
+      </div>
+
+      {/* Card grid */}
+      <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        {visibleActivities.map((activity) => (
+          <ActivityCard
+            key={activity.id}
+            activity={activity}
+            isFavourite={favourites.includes(activity.id)}
+            onToggleFavourite={toggleFavourite}
+            onOpen={setSelectedActivity}
+          />
         ))}
       </div>
+
+      {/* Details pop-up */}
+      {selectedActivity && (
+        <ActivityModal
+          activity={selectedActivity}
+          isFavourite={favourites.includes(selectedActivity.id)}
+          onToggleFavourite={toggleFavourite}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };

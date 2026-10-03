@@ -1,10 +1,27 @@
 import React, { useState, useEffect } from 'react';
 
+import Mirissa_beach from '../assets/images/Mirissa_beach.jpg';
+import yalaHero1 from '../assets/images/yalaHero1.jpg';
+import YalaHero2 from '../assets/images/YalaHero2.jpg';
+
+import DestinationSlide03 from '../assets/images/DestinationSlide03.jpg';
+import DestinationSlide02 from '../assets/images/DestinationSlide02.jpg';
+import DestinationSlide01 from '../assets/images/DestinationSlide01.jpg';
+import DestinationSlide04 from '../assets/images/DestinationSlide04.png';
+import DestinationSlide05 from '../assets/images/DestinationSlide05.jpg';
+import DestinationSlide06 from '../assets/images/DestinationSlide06.jpg';
+import DestinationSlide07 from '../assets/images/DestinationSlide07.jpg';
+import DestinationSlide08 from '../assets/images/DestinationSlide08.jpg';
+import DestinationSlide09 from '../assets/images/DestinationSlide09.jpg';
+import DestinationSlide10 from '../assets/images/DestinationSlide10.png';
+import DestinationSlide11 from '../assets/images/DestinationSlide11.jpg';
+import DestinationSlide12 from '../assets/images/DestinationSlide12.jpg';
+
 // Hero slideshow images
 const heroImages = [
-  'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=80', // Sigiriya
-  'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1920&q=80', // Kandy Train
-  'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1920&q=80'  // Palm Coast
+  YalaHero2, 
+  yalaHero1, 
+  Mirissa_beach 
 ];
 
 // Complete dataset for all tour packages
@@ -18,9 +35,9 @@ const tourPackagesData = [
     price: '$850',
     highlights: ['Sigiriya Rock', 'Temple of the Tooth', 'Scenic Train Ride', 'Galle Fort'],
     images: [
-      'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1578564499878-1f6305a2e5eb?auto=format&fit=crop&w=1200&q=80'
+      DestinationSlide01,
+      DestinationSlide02,
+      DestinationSlide03
     ],
     overview: "A classic high-impact circuit covering Sri Lanka's iconic ancient heritage, central hill country, and southern coast in one week.",
     itinerary: [
@@ -42,9 +59,9 @@ const tourPackagesData = [
     price: '$1,650',
     highlights: ['Anuradhapura Stupas', 'Leopard Safari', 'Pekoe Trail Trek', 'Whale Watching'],
     images: [
-      'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=80'
+      DestinationSlide04,
+      DestinationSlide05,
+      DestinationSlide06
     ],
     overview: 'An extended, relaxed-pace exploration merging ancient kingdoms, wildlife safaris, highland tea trails, and tropical coastal retreats.',
     itinerary: [
@@ -65,8 +82,9 @@ const tourPackagesData = [
     price: '$680',
     highlights: ['Jaffna Fort', 'Mannar Baobab Trees', 'Wilpattu Camping', 'Kalpitiya Lagoon'],
     images: [
-      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80'
+      DestinationSlide07,
+      DestinationSlide08,
+      DestinationSlide09
     ],
     overview: 'Discover Sri Lanka’s untamed north-western coast, historic Portuguese and Dutch fortresses, remote sanctuaries, and distinct northern cuisine.',
     itinerary: [
@@ -84,8 +102,9 @@ const tourPackagesData = [
     price: '$420 / day',
     highlights: ['Private Catamaran', 'Blue Whale Watching', 'Seafood Barbecues', 'Snorkeling & SUP'],
     images: [
-      'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=80'
+      DestinationSlide10,
+      DestinationSlide11,
+      DestinationSlide12
     ],
     overview: 'Experience the Indian Ocean in style. Sail alongside blue whales, anchor in hidden southern coves, and enjoy gourmet dining on deck.',
     itinerary: [
