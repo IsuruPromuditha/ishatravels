@@ -1,92 +1,136 @@
-// src/components/home/VillaSection.jsx
-import React, { useState } from 'react';
-import { VILLAS } from '../../models/tourData';
+import React, { useEffect, useState } from 'react'
+import { VILLAS } from '../../models/tourData'
 
 const VillaSection = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0)
+  const villaCount = VILLAS.length
+  const cardsToShow = Math.min(2, villaCount)
 
-  const prevVilla = () => {
-    setActiveIndex((prev) => (prev === 0 ? VILLAS.length - 1 : prev - 1));
-  };
+  useEffect(() => {
+    if (villaCount < 2) return
 
-  const nextVilla = () => {
-    setActiveIndex((prev) => (prev === VILLAS.length - 1 ? 0 : prev + 1));
-  };
+    const intervalId = setInterval(() => {
+      setActiveIndex((index) => (index + 1) % villaCount)
+    }, 5000)
 
-  const villa = VILLAS[activeIndex];
+    return () => clearInterval(intervalId)
+  }, [villaCount])
+
+  const showPrevious = () => {
+    setActiveIndex((index) => (index === 0 ? villaCount - 1 : index - 1))
+  }
+
+  const showNext = () => {
+    setActiveIndex((index) => (index + 1) % villaCount)
+  }
 
   return (
-    <section id="villas" className="py-20 bg-emerald-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div className="text-center mb-12">
-          <span className="text-amber-400 font-extrabold text-xs tracking-widest uppercase">Luxury Accommodation</span>
-          <h2 className="text-3xl font-black uppercase mt-1">Best Villas & Bungalows</h2>
-          <p className="text-emerald-200 text-xs max-w-md mx-auto mt-2">
-            Handpicked boutique luxury stays from palm-fringed coastlines to tea estate hills.
+    <section id="villas" className="bg-emerald-900 py-20 text-white">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <header className="mb-10 text-center">
+          <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
+            Luxury Accommodation
+          </span>
+          <h2 className="mt-2 text-3xl font-black uppercase md:text-4xl">
+            Best Villas &amp; Bungalows
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-emerald-200">
+            Handpicked boutique luxury stays from palm-fringed coastlines to tea
+            estate hills.
           </p>
-        </div>
+        </header>
 
-        {/* Vertical Slider Card Layout */}
-        <div className="max-w-4xl mx-auto bg-emerald-950/80 rounded-2xl overflow-hidden border border-emerald-700/50 shadow-2xl grid grid-cols-1 md:grid-cols-2">
-          
-          {/* Villa Image */}
-          <div className="relative h-64 md:h-auto">
-            <img 
-              src={villa.image} 
-              alt={villa.name} 
-              className="w-full h-full object-cover transition-all duration-700" 
-            />
-            <span className="absolute top-4 left-4 bg-amber-500 text-emerald-950 text-xs font-bold px-3 py-1 rounded-full shadow">
-              ⭐ {villa.rating} Rating
-            </span>
-          </div>
+        {villaCount > 0 ? (
+          <>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {Array.from({ length: cardsToShow }, (_, cardIndex) => {
+                const villa = VILLAS[(activeIndex + cardIndex) % villaCount]
+                const description =
+                  villa.description ||
+                  `Enjoy a relaxing stay at ${villa.name} in ${villa.location}. ${
+                    villa.tags?.length
+                      ? `Experience ${villa.tags.join(', ').toLowerCase()} and`
+                      : 'Enjoy'
+                  } discover the best of Sri Lanka.`
 
-          {/* Villa Details & Vertical Controls */}
-          <div className="p-8 flex flex-col justify-between">
-            <div>
-              <p className="text-xs text-amber-400 font-semibold tracking-wider uppercase">{villa.location}</p>
-              <h3 className="text-2xl font-black mt-1 mb-3">{villa.name}</h3>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                {villa.tags.map((tag, idx) => (
-                  <span key={idx} className="bg-emerald-800/60 text-emerald-200 text-[10px] px-2.5 py-1 rounded-md border border-emerald-700">
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                return (
+                  <article
+                    key={`${villa.name}-${activeIndex}-${cardIndex}`}
+                    className="overflow-hidden rounded-2xl border border-emerald-700/50 bg-emerald-950/80 shadow-xl transition-transform duration-300 hover:-translate-y-1"
+                  >
+                    <div className="relative h-56">
+                      <img
+                        src={villa.image}
+                        alt={villa.name}
+                        className="h-full w-full object-cover"
+                      />
+                      <span className="absolute left-4 top-4 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold text-emerald-950 shadow">
+                        ⭐ {villa.rating} Rating
+                      </span>
+                    </div>
 
-              <p className="text-lg font-bold text-amber-300">{villa.price}</p>
+                    <div className="p-6">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-amber-400">
+                        {villa.location}
+                      </p>
+                      <h3 className="mb-3 mt-1 text-2xl font-black">{villa.name}</h3>
+
+                      <p className="mb-5 text-sm leading-6 text-emerald-100">
+                        {description}
+                      </p>
+
+                      <div className="mb-5 flex flex-wrap gap-2">
+                        {villa.tags.map((tag, index) => (
+                          <span
+                            key={`${tag}-${index}`}
+                            className="rounded-md border border-emerald-700 bg-emerald-800/60 px-2.5 py-1 text-xs text-emerald-200"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <p className="text-lg font-bold text-amber-300">{villa.price}</p>
+                    </div>
+                  </article>
+                )
+              })}
             </div>
 
-            {/* Vertical Control Navigation */}
-            <div className="flex items-center justify-between border-t border-emerald-800/80 pt-6 mt-6">
-              <span className="text-xs text-emerald-400 font-mono">
-                0{activeIndex + 1} / 0{VILLAS.length}
-              </span>
-              <div className="flex gap-2">
-                <button 
-                  onClick={prevVilla}
-                  className="w-10 h-10 rounded-full bg-emerald-800 hover:bg-amber-500 hover:text-emerald-950 transition flex items-center justify-center font-bold"
-                >
-                  ↑
-                </button>
-                <button 
-                  onClick={nextVilla}
-                  className="w-10 h-10 rounded-full bg-emerald-800 hover:bg-amber-500 hover:text-emerald-950 transition flex items-center justify-center font-bold"
-                >
-                  ↓
-                </button>
+            {villaCount > 1 && (
+              <div className="mt-8 flex items-center justify-between border-t border-emerald-800 pt-5">
+                <span className="font-mono text-sm text-emerald-300">
+                  {String(activeIndex + 1).padStart(2, '0')} /{' '}
+                  {String(villaCount).padStart(2, '0')}
+                </span>
+
+                <div className="flex gap-3">
+                  <button
+                    type="button"
+                    onClick={showPrevious}
+                    aria-label="Show previous villas"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-800 font-bold transition-colors hover:bg-amber-500 hover:text-emerald-950 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  >
+                    ←
+                  </button>
+                  <button
+                    type="button"
+                    onClick={showNext}
+                    aria-label="Show next villas"
+                    className="flex h-11 w-11 items-center justify-center rounded-full bg-emerald-800 font-bold transition-colors hover:bg-amber-500 hover:text-emerald-950 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                  >
+                    →
+                  </button>
+                </div>
               </div>
-            </div>
-
-          </div>
-
-        </div>
-
+            )}
+          </>
+        ) : (
+          <p className="text-center text-emerald-200">No villas are available yet.</p>
+        )}
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default VillaSection;
+export default VillaSection
