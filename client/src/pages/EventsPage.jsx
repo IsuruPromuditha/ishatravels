@@ -239,7 +239,7 @@ const Events = () => {
               key={festival.id}
               className="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
             >
-              {/* Left Column: Festival Image Container with Fixed Standard Height & Aspect Ratio */}
+              {/* Left Column: Festival Image Container */}
               <div className="lg:col-span-5 relative w-full h-64 sm:h-72 lg:h-full min-h-[280px] bg-slate-900 overflow-hidden">
                 <img
                   src={festival.image}
@@ -252,10 +252,11 @@ const Events = () => {
                 </span>
               </div>
 
-              {/* Right Column: Complete Details */}
+              {/* Right Column: Complete Details in exact required structure */}
               <div className="lg:col-span-7 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
                 
-                <div className="space-y-3">
+                <div className="space-y-4">
+                  {/* Category & Religion Badges */}
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200/60">
                       {festival.category}
@@ -265,16 +266,23 @@ const Events = () => {
                     </span>
                   </div>
 
+                  {/* 1. EVENT NAME */}
                   <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
                     {festival.eventName}
                   </h3>
 
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  {/* 2. DESCRIPTION */}
+                  <p className="text-slate-600 text-sm leading-relaxed font-normal">
                     {festival.shortDescription}
                   </p>
+
+                  {/* 3. OVERVIEW */}
+                  <div className="border-t border-slate-100 pt-3 text-xs text-slate-600 leading-relaxed">
+                    <p><strong className="text-slate-800">Overview:</strong> {festival.fullDescription}</p>
+                  </div>
                 </div>
 
-                {/* Famous Foods List */}
+                {/* 4. EVENT FAVOURITE FOODS */}
                 <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
                     <span>🍲</span> Famous Festive Foods:
@@ -291,12 +299,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                {/* Detailed Narrative Snippet */}
-                <div className="space-y-2 border-t border-slate-100 pt-4 text-xs text-slate-600 leading-relaxed">
-                  <p><strong className="text-slate-800">Overview:</strong> {festival.fullDescription}</p>
-                </div>
-
-                {/* Card Action Button */}
+                {/* 5. ACTION BUTTON */}
                 <div className="pt-2 flex justify-end">
                   <button
                     onClick={() => setSelectedFestival(festival)}
