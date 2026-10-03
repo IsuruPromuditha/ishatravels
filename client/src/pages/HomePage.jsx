@@ -9,6 +9,7 @@ import VillaSection from '../components/home/VillaSection';
 import DestinationSection from '../components/home/DestinationSection';
 import OfferSection from '../components/home/OfferSection';
 import AboutSection from '../components/home/AboutSection';
+import ThingsToDo from '../components/home/ThingsToDo';
 
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
       <HeroSection />
       <BookingForm />
       <CategorySection />
+      <ThingsToDo />
       <AboutSection />
       <VillaSection />
       <DestinationSection />

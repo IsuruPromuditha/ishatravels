@@ -18,72 +18,137 @@ const DestinationSection = () => {
 
   if (SLIDES.length === 0) return null
 
+  const destination = SLIDES[activeDest]
+  const highlights = Array.isArray(destination.highlights)
+    ? destination.highlights
+    : Array.isArray(destination.tags)
+      ? destination.tags
+      : []
+
   return (
-    <section className="bg-slate-50 py-20">
+    <section className="bg-slate-50 py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <header className="mb-10">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
-            Must-Visit Places
-          </span>
-          <h2 className="mt-1 text-3xl font-black uppercase text-slate-900">
-            Top Destinations in Sri Lanka
-          </h2>
-          <p className="mt-2 max-w-md text-sm text-slate-500">
-            From golden south-coast beaches to heritage temples in the central
-            cultural triangle.
-          </p>
-        </header>
+        <header className="mb-8 text-center">
+  <span className="text-xs font-extrabold uppercase tracking-widest text-emerald-700">
+    Must-Visit Places
+  </span>
+  <h2 className="mt-2 text-3xl font-black uppercase text-slate-900 sm:text-4xl">
+    Top Destinations in Sri Lanka
+  </h2>
+  <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+    Discover unforgettable places, local culture, and beautiful scenery
+    across the island.
+  </p>
+</header>
 
-        <div className="relative h-[450px] overflow-hidden rounded-2xl shadow-2xl">
-          <div
-            className="flex h-full transition-transform duration-700 ease-in-out"
-            style={{
-              width: `${SLIDES.length * 100}%`,
-              transform: `translateX(-${activeDest * (100 / SLIDES.length)}%)`,
-            }}
-          >
-            {SLIDES.map((destination) => (
-              <article
-                key={destination.id}
-                className="relative h-full"
-                style={{ width: `${100 / SLIDES.length}%` }}
-              >
-                <img
-                  src={destination.image}
-                  alt={destination.title}
-                  className="h-full w-full object-cover"
-                />
-
-                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent p-8 pb-24">
-                  <h3 className="mb-2 text-3xl font-black text-white">
-                    {destination.title}
-                  </h3>
-                  <p className="max-w-2xl text-sm text-slate-200">
-                    {destination.description}
-                  </p>
+        <div className="grid overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl lg:grid-cols-2">
+          {/* Automatically advancing image carousel */}
+          <div className="relative min-h-[320px] overflow-hidden bg-slate-900 sm:min-h-[460px]">
+            <div
+              className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${activeDest * 100}%)` }}
+            >
+              {SLIDES.map((slide, index) => (
+                <div
+                  key={slide.id ?? slide.title ?? index}
+                  className="relative h-full min-w-full"
+                >
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/10" />
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
           </div>
 
-          <div className="absolute bottom-5 left-8 right-8 flex gap-3 overflow-x-auto">
-            {SLIDES.map((destination, index) => (
-              <button
-                key={destination.id}
-                type="button"
-                onClick={() => setActiveDest(index)}
-                aria-label={`Show ${destination.title}`}
-                aria-pressed={index === activeDest}
-                className={`shrink-0 rounded-lg px-4 py-2 text-xs font-bold uppercase transition-colors ${
-                  index === activeDest
-                    ? 'bg-amber-500 text-emerald-950'
-                    : 'bg-white/20 text-white hover:bg-white/40'
-                }`}
-              >
-                {destination.title.split(' ')[0]}
-              </button>
-            ))}
-          </div>
+          {/* Destination details */}
+          <article className="flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-emerald-700">
+              Explore Sri Lanka
+            </span>
+
+            <h3 className="mt-3 text-3xl font-black text-slate-900 sm:text-4xl">
+              {destination.title}
+            </h3>
+
+            {destination.location && (
+              <p className="mt-2 text-sm font-semibold text-amber-700">
+                {destination.location}
+              </p>
+            )}
+
+            <p className="mt-5 text-base leading-7 text-slate-600">
+              {destination.description ||
+                `Discover ${destination.title}, a memorable stop on your Sri Lankan journey. Explore the local scenery, culture, and experiences at your own pace.`}
+            </p>
+
+            {(destination.bestTimeToVisit || destination.duration) && (
+              <div className="mt-6 grid grid-cols-2 gap-4 border-y border-slate-200 py-5">
+                {destination.bestTimeToVisit && (
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Best time to visit
+                    </p>
+                    <p className="mt-1 font-semibold text-slate-900">
+                      {destination.bestTimeToVisit}
+                    </p>
+                  </div>
+                )}
+
+                {destination.duration && (
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-500">
+                      Suggested duration
+                    </p>
+                    <p className="mt-1 font-semibold text-slate-900">
+                      {destination.duration}
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {highlights.length > 0 ? (
+              <div className="mt-6">
+                <h4 className="font-bold text-slate-900">Highlights</h4>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {highlights.map((highlight, index) => (
+                    <li
+                      key={`${highlight}-${index}`}
+                      className="rounded-full border border-emerald-700/15 bg-emerald-700/5 px-3 py-1.5 text-sm font-medium text-emerald-800"
+                    >
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <p className="mt-6 border-l-2 border-emerald-600 pl-4 text-sm leading-6 text-slate-600">
+                Make time to explore the surrounding area, enjoy local food, and
+                experience the destination at a relaxed pace.
+              </p>
+            )}
+
+            <div className="mt-8 flex flex-wrap gap-2" aria-label="Choose a destination">
+              {SLIDES.map((slide, index) => (
+                <button
+                  key={slide.id ?? slide.title ?? index}
+                  type="button"
+                  onClick={() => setActiveDest(index)}
+                  aria-label={`Show ${slide.title}`}
+                  aria-pressed={index === activeDest}
+                  className={`h-2.5 rounded-full transition-all ${
+                    index === activeDest
+                      ? 'w-8 bg-emerald-700'
+                      : 'w-2.5 bg-slate-300 hover:bg-emerald-500'
+                  }`}
+                />
+              ))}
+            </div>
+          </article>
         </div>
       </div>
     </section>
