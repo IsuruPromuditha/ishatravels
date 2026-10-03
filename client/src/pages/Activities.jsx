@@ -1,26 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
+import Activity from '../assets/images/Activities/Activity.jpg';
+import Activity1 from '../assets/images/Activities/Activity1.jpg';
+import Activity2 from '../assets/images/Activities/Activity2.jpg';
+
+
 // Hero Slider Data (Featured highlights)
 const heroSlides = [
   {
     id: 1,
     title: "Experience Wild Sri Lanka",
     subtitle: "Up-close leopard safaris and vast elephant gatherings in Yala & Minneriya",
-    image: "https://images.unsplash.com/photo-1544979590-37e9b47eb705?q=80&w=1200&auto=format&fit=crop",
+    image: Activity,
     tag: "Featured Adventure"
   },
   {
     id: 2,
     title: "Conquer the Ancient Citadel",
     subtitle: "Ascend 200m above the jungle canopy at Sigiriya Lion Rock",
-    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?q=80&w=1200&auto=format&fit=crop",
+    image: Activity1,
     tag: "UNESCO World Heritage"
   },
   {
     id: 3,
     title: "Journey Through Cloud Forests",
     subtitle: "Take the iconic mountain train ride across Nine Arch Bridge in Ella",
-    image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1200&auto=format&fit=crop",
+    image: Activity2,
     tag: "Scenic Transport"
   }
 ];
