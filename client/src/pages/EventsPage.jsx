@@ -19,7 +19,7 @@ const heroSlides = [
   }
 ];
 
-// Complete Festivals Dataset
+// Rich, Expanded Festivals Dataset
 const festivalEventsData = [
   {
     id: 'avurudu',
@@ -28,10 +28,19 @@ const festivalEventsData = [
     timeOfYear: 'Mid-April (April 13th – 14th)',
     religion: 'Buddhist & Hindu Traditions',
     image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Kiribath (Milk Rice)', 'Kevum (Oil Cakes)', 'Kokis', 'Aasmi', 'Aggala', 'Kalu Dodol', 'Sweet Pongal'],
-    shortDescription: 'The largest national harvest festival marking the solar transition from Pisces to Aries with synchronized household rituals and games.',
-    fullDescription: 'The Sinhala and Tamil New Year marks the movement of the sun from Meena Rashiya (Pisces) to Mesha Rashiya (Aries). It brings together Sinhala Buddhists and Tamil Hindus in nationwide unity. Celebrations follow exact astrological timings (Nekath) for lighting the hearth, boiling milk until it overflows, exchanging currency (Ganu Denu), and sharing traditional sweet tables. Villages participate in games like Kotta Pora (pillow fighting) and Raban drumming.',
-    historyContent: 'The festival dates back centuries to agrarian harvest customs. Villagers expressed gratitude to the Sun God for bountiful crop yields before initiating new planting cycles. Over centuries, astrological concepts brought from South India harmonized with native Sinhalese island traditions, resulting in shared auspicious times observed by households nationwide simultaneously.'
+    famousFoods: [
+      'Kiribath (Milk Rice)', 
+      'Kevum (Oil Cakes)', 
+      'Kokis (Crispy Rosettes)', 
+      'Aasmi (Honey Treacle Funnel Cake)', 
+      'Aggala (Roasted Rice Balls)', 
+      'Kalu Dodol (Jaggery Fudge)', 
+      'Aluwa (Sweet Flour Halwa)',
+      'Sweet Pongal'
+    ],
+    shortDescription: 'Sri Lanka’s largest national holiday celebrating the solar transition (Sankranti) from Pisces to Aries. It unifies Sinhalese and Tamil communities through nationwide household rituals strictly timed to astrological hours (Nekath), traditional drumming, and village folk games.',
+    fullDescription: 'The Sinhala and Tamil New Year marks the conclusion of the spring harvest and the sun’s journey into the constellation of Aries (Mesha Rashiya). The festival begins with "Punya Kalaya" (a period of neutral astrological time dedicated to spiritual reflection), followed by synchronized rituals across the country. Every household lights the hearth, boils milk until it overflows to signal prosperity, exchanges goodwill payments (Ganu Denu), and gathers around an elaborate "Avurudu Kæmæthi" sweet table. Rural communities celebrate with traditional folk games such as Kotta Pora (pillow fights on horizontal poles), Raban drumming by village matriarchs, and grease pole climbing.',
+    historyContent: 'Ancient agrarian Sri Lanka celebrated the spring harvest by giving thanks to the Sun God (Surya) for bountiful crop yields prior to the new planting cycle. Over centuries, astrological concepts brought through historic interactions with South India harmonized with indigenous Sinhalese customs, resulting in a unique national celebration where millions of citizens perform identical domestic rituals at the exact same minute.'
   },
   {
     id: 'kandy-perahera',
@@ -40,10 +49,17 @@ const festivalEventsData = [
     timeOfYear: 'July / August (Esala Month)',
     religion: 'Buddhism & Devala Heritage',
     image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Helapa', 'Aggala', 'Kiri Toffee', 'Beli Flower Herbal Tea', 'Traditional Kandyan Sweets'],
-    shortDescription: 'A world-famous 10-night parade featuring fire-dancers, whip-crackers, Kandyan drummers, and silk-clad elephants honoring the Sacred Tooth Relic.',
-    fullDescription: 'Spanning ten consecutive nights, the Kandy Esala Perahera is a grand procession featuring whip-crackers, fire-spinners, flag-bearers, traditional Kandyan drummers, and dozens of elephants dressed in embroidered silk robes. The grandest tusker carries a golden casket replica containing the Sacred Tooth Relic of Lord Buddha through Kandy streets. The festival finishes with the Diya Kepeema (water-cutting ritual) at Getambe.',
-    historyContent: 'Originating in the 4th Century CE when Princess Hemamali and Prince Dantha brought the Sacred Tooth Relic to Sri Lanka from India. King Meghavanna commanded that the relic be paraded annually for public homage. In the 18th century, King Kirti Sri Rajasinha integrated the tooth relic procession with traditional pageants dedicated to guardian deities Natha, Vishnu, Skanda, and Pattini.'
+    famousFoods: [
+      'Helapa (Finger Millet & Coconut Steamed Treats)', 
+      'Aggala (Spiced Roasted Rice Balls)', 
+      'Kiri Toffee (Condensed Milk Fudge)', 
+      'Beli Flower & Ranawara Herbal Teas', 
+      'Traditional Kandyan Rice Sweets',
+      'King Coconut Water'
+    ],
+    shortDescription: 'Asia’s premier Buddhist pageant featuring 10 consecutive nights of intense ritual processions through historic Kandy. Features hundreds of whip-crackers, fire-spinners, Ves dancers, temple drummers, and silk-robed elephants honoring the Sacred Tooth Relic of Lord Buddha.',
+    fullDescription: 'The Kandy Esala Perahera is a magnificent 10-night cultural spectacle where ancient royal rituals come alive around the UNESCO World Heritage city of Kandy. The pageant progresses through phases—starting with the internal Kumbal Perahera and escalating to the majestic Randoli Perahera processions. Led by the Maligawa Tusker draped in embroidered gold cloth carrying the Golden Casket, the parade includes four separate processions from the devales dedicated to guardian deities Natha, Vishnu, Skanda, and Pattini. The festival concludes with the sacred "Diya Kepeema" (water-cutting ritual) at the Mahaweli River in Getambe.',
+    historyContent: 'The festival traces back to the 4th Century CE when Princess Hemamali and Prince Dantha smuggled the Sacred Tooth Relic from Kalinga, India to Sri Lanka hidden inside her hair. King Meghavanna decreed that the relic be displayed publicly once a year. In 1753 CE, under King Kirti Sri Rajasinha, the Buddhist procession was fused with ancient rituals honoring Hindu guardian deities, creating the unified royal pageant seen today.'
   },
   {
     id: 'vesak',
@@ -52,10 +68,16 @@ const festivalEventsData = [
     timeOfYear: 'May (May Full Moon)',
     religion: 'Theravada Buddhism',
     image: 'https://images.unsplash.com/photo-1578564499878-1f6305a2e5eb?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Dansala Offerings', 'Sago Kanji (Tapioca Porridge)', 'Manioc with Coconut', 'Free Herbal Teas & Meals'],
-    shortDescription: 'Commemorating Buddha’s birth, enlightenment, and passing away with giant illuminated light displays (Pandals), paper lanterns, and free food stalls (Dansalas).',
-    fullDescription: 'Vesak commemorates the Birth, Enlightenment (Nirvana), and Passing Away (Parinirvana) of Lord Buddha. The island transforms into a landscape of light with hand-crafted bamboo lanterns (Vesak Koodu), oil lamps, and multi-story electric light displays (Torana/Pandals) depicting Jataka tales. Free community food stalls (Dansalas) offer hot meals, ice cream, and drinks to pilgrims.',
-    historyContent: 'Vesak has been celebrated in Sri Lanka since ancient times, recorded in chronicles like the Mahavamsa during the reign of King Dutugemunu (2nd Century BCE). Modern public Vesak displays gained nationwide cultural momentum during the late 19th-century Buddhist revival led by Anagarika Dharmapala and Colonel Henry Steel Olcott.'
+    famousFoods: [
+      'Dansala Charity Feasts (Free Meals)', 
+      'Sago Kanji (Tapioca & Coconut Milk Porridge)', 
+      'Boiled Manioc with Fresh Coconut & Chili Sambal', 
+      'Free Herbal Teas (Belimal & Ranawara)',
+      'Free Ice Creams & Fruit Juices'
+    ],
+    shortDescription: 'The most sacred day in the Buddhist calendar, celebrating the Birth, Enlightenment, and Passing Away (Parinirvana) of Lord Buddha. The island transforms into a glowing landscape of hand-crafted paper lanterns, towering illuminated story-boards (Pandals), and free food stalls (Dansalas).',
+    fullDescription: 'Vesak is an islandwide religious and cultural festival characterized by profound devotion and public charity. Devotees dress in clean white garments to spend the day in meditation at local temples (Sil). By nightfall, streets illuminate with thousands of octagonal bamboo lanterns (Vesak Koodu), oil lamps, and multi-story electric light structures called Torana (Pandals) that depict Jataka tales set to audio narration. A defining pillar of Vesak is the "Dansala"—thousands of community-funded stalls providing free meals, drinks, and desserts to passersby as an act of selfless generosity (Dana).',
+    historyContent: 'Historical chronicles like the Mahavamsa document Vesak celebrations as far back as the 2nd Century BCE during the reign of King Dutugemunu. The modern tradition of public lighting, elaborate Pandals, and islandwide street decorations gained massive momentum during the 19th-century Buddhist revival spearheaded by Anagarika Dharmapala and Colonel Henry Steel Olcott.'
   },
   {
     id: 'vel-nallur',
@@ -64,10 +86,17 @@ const festivalEventsData = [
     timeOfYear: 'July / August',
     religion: 'Hinduism (Tamil Tradition)',
     image: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Medhu Vadai', 'Masala Vadai', 'Laddu', 'Sweet Payasam', 'Modakam', 'Panchamirtham'],
-    shortDescription: 'Grand wooden chariot processions honoring Lord Murugan with traditional Nadaswaram music, Kavadi burden dances, and sacred rituals.',
-    fullDescription: 'The Vel and Nallur festivals honor Lord Murugan (Skanda), the Hindu deity of wisdom and war. In Colombo, a gilded wooden chariot carrying Murugan’s sacred spear (Vel) is drawn from Pettah to Bambalapitiya. In Jaffna, the Nallur Kandaswamy Kovil annual festival spans 25 days with Kavadi dances, drumming ensembles, and thousands of barefoot devotees.',
-    historyContent: 'Traces back to Hindu puranic heritage, celebrating Goddess Parvati presenting the divine spear (Vel) to her son Murugan to overcome demon forces. The Colombo Vel festival was formally established in 1888 under British colonial rule to enable urban and estate workers to join an annual chariot procession without traveling to northern temples.'
+    famousFoods: [
+      'Medhu Vadai (Savory Lentil Fritters)', 
+      'Masala Vadai', 
+      'Laddu & Mysore Pak', 
+      'Sweet Payasam (Milk Pudding)', 
+      'Modakam (Sweet Rice Dumplings)', 
+      'Panchamirtham (5-Fruit Temple Prasadam)'
+    ],
+    shortDescription: 'Vibrant, energy-filled Hindu festivals dedicated to Lord Murugan (Skanda). Features massive carved wooden chariots (Rathams), rhythmic Nadaswaram horn music, Thavil drumming, and devotional Kavadi burden dances performed by thousands of barefoot pilgrims.',
+    fullDescription: 'The Vel and Nallur festivals represent the spiritual heart of Sri Lankan Tamil Hindu heritage. In Jaffna, the Nallur Kandaswamy Kovil hosts an incredible 25-day festival culminating in the Ther (Chariot) procession, where a multi-story carved wooden chariot is pulled through red-and-white walled streets by thousands of shirtless male devotees. Simultaneously in Colombo, the Vel Festival features a gilded chariot bearing the sacred spear (Vel) of Lord Murugan traveling from Pettah to Bambalapitiya, accompanied by traditional musicians and ecstatic Kavadi dancers.',
+    historyContent: 'Rooted in ancient Puranic heritage, the festival honors Goddess Parvati presenting the invincible divine spear (Vel) to her son Lord Murugan to vanquish dark forces. The Nallur temple was founded in 948 CE and served as the focal point of the Jaffna Kingdom. The Colombo Vel procession was formally established in 1888 under British colonial rule to enable plantation and urban workers to celebrate the chariot tradition locally.'
   },
   {
     id: 'thai-pongal',
@@ -76,10 +105,16 @@ const festivalEventsData = [
     timeOfYear: 'Mid-January (January 14th – 15th)',
     religion: 'Hinduism & Tamil Culture',
     image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Sweet Pongal (Rice boiled with jaggery & milk)', 'Vadai', 'Sugarcane', 'Fruit Offerings'],
-    shortDescription: 'A Thanksgiving festival dedicated to the Sun God and cattle, centered around boiling fresh rice with jaggery in decorated earthen pots.',
-    fullDescription: 'Thai Pongal expresses gratitude to Surya (the Sun God) and farm animals for a bountiful rice harvest. Families gather at sunrise outside their homes to boil fresh harvest rice with cow milk and cane jaggery in clay pots. As the milk boils over, devotees chant "Pongalo Pongal!" to welcome good fortune.',
-    historyContent: 'Originating over 2,000 years ago in South India and northern Sri Lanka during the Sangam age, Thai Pongal remains an essential agricultural milestone marking the start of the Tamil month "Thai", symbolizing fresh beginnings and agricultural prosperity.'
+    famousFoods: [
+      'Sweet Thai Pongal (Boiled Rice with Jaggery, Cashews & Raisins)', 
+      'Ven Pongal (Savory Pepper & Ghee Rice)', 
+      'Medhu Vadai', 
+      'Fresh Sugarcane Stalks', 
+      'Banana & Fruit Offerings'
+    ],
+    shortDescription: 'A joyful Tamil thanksgiving harvest festival dedicated to Surya (the Sun God) and agricultural cattle. Families gather at dawn to boil fresh rice with milk and jaggery in decorated earthen pots until it overflows, signaling abundance.',
+    fullDescription: 'Thai Pongal marks the solar movement northward into the month of Thai, representing fresh beginnings, agricultural prosperity, and gratitude toward nature. Families decorate courtyard entrances with colorful Kolam patterns made from rice flour. At sunrise, fresh harvest rice is boiled in traditional clay pots decorated with turmeric plants. As the milk boils over, family members joyous shout "Pongalo Pongal!" ("May this rice boil over with prosperity!"). The second day, Mattu Pongal, is dedicated to honoring farm cattle with floral garlands and painted horns for their hard work in tilling fields.',
+    historyContent: 'Thai Pongal has been celebrated for over two millennia across Southern India and Northern Sri Lanka, dating back to the Sangam literature era. It remains an essential cultural milestone that bridges humans, livestock, and natural elements in gratitude for the food cycle.'
   },
   {
     id: 'poson-poya',
@@ -88,10 +123,15 @@ const festivalEventsData = [
     timeOfYear: 'June (June Full Moon)',
     religion: 'Buddhism',
     image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Poson Dansala Rice', 'Sago Kanji', 'Herbal Beverages', 'Fruit Juices'],
-    shortDescription: 'Marks the official arrival of Buddhism in Sri Lanka at Mihintale, featuring lantern displays, devotional songs, and sacred pilgrimages.',
-    fullDescription: 'Poson celebrates the introduction of Theravada Buddhism to Sri Lanka in 236 BCE. While observed islandwide, the spiritual heart of Poson is Mihintale and Anuradhapura, where thousands of white-clad pilgrims ascend the sacred Mihintale rock stairs amid lantern illuminations and religious pageants.',
-    historyContent: 'Commemorates the historic encounter at Mihintale sanctuary between Arahat Mahinda (son of Emperor Ashoka of India) and King Devanampiya Tissa of Sri Lanka. King Tissa embraced the Buddhist teachings, establishing it as the state religion and shaping the island’s culture, literature, and art.'
+    famousFoods: [
+      'Poson Dansala Rice & Curry Feasts', 
+      'Sago & Coconut Milk Porridge', 
+      'Herbal Beverages (Belimal Tea)', 
+      'Fresh Fruit Juices & King Coconut'
+    ],
+    shortDescription: 'Commemorates the historic arrival of Buddhism in Sri Lanka at Mihintale in the 3rd Century BCE. Millions of white-clad pilgrims journey to the ancient ruins of Anuradhapura and climb the sacred rock stairs of Mihintale under illuminated night skies.',
+    fullDescription: 'Poson Poya is second in religious importance only to Vesak. It marks the civilizational turning point when Arahat Mahinda converted King Devanampiya Tissa to Buddhism. The epicenter of Poson is Mihintale—the "Cradle of Buddhism in Sri Lanka"—where thousands of pilgrims ascend the 1,840 granite steps to the sanctuary peak. Cities nationwide feature illuminated archways, devotional songs (Bhakthi Geetha), paper lanterns, and generous community-run Dansalas serving hot meals to pilgrims journeying north.',
+    historyContent: 'In 236 BCE, Arahat Mahinda (son of Indian Emperor Ashoka) met King Devanampiya Tissa while the king was hunting deer at Mihintale. After testing the king’s intelligence with a famous riddle about mango trees, Mahinda preached the Chullahastipadopama Sutta. The king embraced Buddhism, leading to the establishment of the Monastic order, advanced hydraulics, stone architecture, and written literature across Sri Lanka.'
   },
   {
     id: 'navam-perahera',
@@ -100,10 +140,16 @@ const festivalEventsData = [
     timeOfYear: 'February (Navam Full Moon)',
     religion: 'Buddhism',
     image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Traditional Street Snacks', 'Kiri Toffee', 'Short Eats', 'King Coconut Water'],
-    shortDescription: 'Colombo’s premier night festival featuring hundreds of performers, traditional dancers, drummers, and caparisoned elephants around Beira Lake.',
-    fullDescription: 'Organized by the Gangaramaya Temple in Hunupitiya, Colombo, the Navam Perahera turns the surroundings of Beira Lake into a cultural arena. It features traditional mask dancers (Ves Natum), Low-Country drummers, flag bearers, and walking monks.',
-    historyContent: 'Inaugurated in 1979 under the guidance of Venerable Galboda Gnanissara Thero (Podin Hamuduruwo) to revive traditional folk performing arts and offer urban Colombo residents a major annual cultural festival.'
+    famousFoods: [
+      'Street Food Eats (Isso Vadai / Prawn Cakes)', 
+      'Kiri Toffee', 
+      'Roasted Gram & Peanuts', 
+      'Fresh King Coconut Water',
+      'Short Eats & Pastries'
+    ],
+    shortDescription: 'Colombo’s flagship cultural festival organized by the Gangaramaya Temple. Over two nights, Beira Lake comes alive with over 100 decorated elephants, masked dancers, traditional fire-spinners, and performers representing every regional dance discipline of Sri Lanka.',
+    fullDescription: 'The Navam Perahera transforms downtown Colombo into a vibrant arena of island folk culture. Organized by the famous Gangaramaya Temple, the procession parades around the scenic perimeter of Beira Lake and the Seema Malaka shrine. Spectators witness a rare collection of Low-Country Pahatharata dancers, Up-Country Kandyan Ves performers, Sabaragamuwa dancers, stilt walkers, whip crackers, and Buddhist monks moving in disciplined succession alongside majestic decorated tuskers.',
+    historyContent: 'Inaugurated in 1979 under the vision of the late Venerable Galboda Gnanissara Thero (affectionately known as Podi Hamuduruwo), the festival was established to preserve traditional Sri Lankan performing arts that were declining in urban areas while giving residents of Colombo a grand annual cultural festival.'
   },
   {
     id: 'kataragama-esala',
@@ -112,10 +158,16 @@ const festivalEventsData = [
     timeOfYear: 'July / August',
     religion: 'Buddhist, Hindu, Muslim & Vedda Heritage',
     image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Kataragama Fruit Baskets', 'Murthan Rice', 'Sweet Prasad', 'Panchamirtham'],
-    shortDescription: 'A multi-religious festival in southern Sri Lanka known for intense devotion rituals, fire-walking ceremonies, and Pada Yatra foot pilgrimages.',
-    fullDescription: 'Located in the southern dry zone, Kataragama brings together Buddhists, Hindus, Muslims, and indigenous Vedda communities. Devotees honor God Kataragama (Skanda) through rituals including Kavadi dancing, body piercing (Thooku Kavadi), and walking barefoot over hot wooden embers.',
-    historyContent: 'Deeply rooted in indigenous folklore and ancient myths, Kataragama is venerated as the abode of Lord Skanda and his consort Valli, an indigenous Vedda princess. For centuries, pilgrims have walked hundreds of miles from Jaffna down the east coast in the sacred "Pada Yatra" walk.'
+    famousFoods: [
+      'Kataragama Worship Fruit Baskets', 
+      'Murthan Rice (Sacred Temple Rice)', 
+      'Sweet Prasadam', 
+      'Panchamirtham',
+      'Fresh Woodapple Juice'
+    ],
+    shortDescription: 'A intense multi-religious pilgrimage held in the southern dry zone forest. Unites Buddhists, Hindus, Muslims, and indigenous Vedda communities through extreme devotion rituals, barefoot fire-walking ceremonies, and the ancient Pada Yatra foot trek.',
+    fullDescription: 'Kataragama is one of Sri Lanka’s most sacred and mystically charged sanctuaries. Dedicated to God Kataragama (Skanda / Murugan), the two-week festival draws thousands who undertake the historic "Pada Yatra"—a 45-day barefoot trek from Northern Jaffna down the eastern coast through national parks to the shrine. Devotees perform intense acts of faith including carrying heavy peacock Kavadi frames, suspending themselves with hooks through their skin, and walking barefoot across pits of red-hot wooden embers during the famous fire-walking ceremony.',
+    historyContent: 'Kataragama has been venerated for thousands of years as the realm of Lord Skanda and his consort Valli, a local indigenous Vedda princess. Kings of Sri Lanka—including King Dutugemunu in the 2nd Century BCE—built and endowed shrines at Kataragama in gratitude for divine intervention in battle, cementing its status as a shared sacred sanctuary for all ethnicities.'
   },
   {
     id: 'madhu-festival',
@@ -124,10 +176,16 @@ const festivalEventsData = [
     timeOfYear: 'August (August 15th Peak)',
     religion: 'Roman Catholicism',
     image: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=80',
-    famousFoods: ['Campfire Stews', 'Fish Curry', 'Roast Paan', 'Local Sweetmeats'],
-    shortDescription: 'Sri Lanka’s largest Catholic pilgrimage, drawing hundreds of thousands of Tamil and Sinhala families to camp in the forest sanctuary of Mannar.',
-    fullDescription: 'The Shrine of Our Lady of Madhu in Mannar becomes a tent city for over 400,000 pilgrims during its August feast. Sinhala and Tamil Catholic families camp together in surrounding woodlands, attending open-air masses, candlelight rosary processions, and community feasting.',
-    historyContent: 'Spanning over 400 years, Catholic devotees carried the sacred statue of Our Lady of Madhu into the jungle of Mannar in 1670 to escape Dutch colonial religious persecution. The shrine became a sanctuary of peace and inter-community unity throughout modern Sri Lankan history.'
+    famousFoods: [
+      'Campfire Stews & Coconut Curries', 
+      'Fried Fish with Chili Sambal', 
+      'Crusty Woodfired Roast Paan', 
+      'Local Homemade Sweetmeats',
+      'Hot Spiced Milk Tea'
+    ],
+    shortDescription: 'Sri Lanka’s largest Catholic pilgrimage, drawing over 400,000 Sinhala and Tamil believers to camp together in the dense forest sanctuary of Mannar for communal prayer, open-air masses, and candlelight rosary processions.',
+    fullDescription: 'The Shrine of Our Lady of Madhu in the northern Mannar district transforms into a massive tent city every August for the Feast of the Assumption. Families build temporary campsites beneath the dry zone jungle trees, sharing cooking fires and communal meals across ethnic lines. The festival features solemn outdoor masses recited in both Sinhala and Tamil, candlelight evening processions carrying the miraculous statue of Our Lady of Madhu, and heartfelt intercession prayers.',
+    historyContent: 'The pilgrimage dates back over 400 years to 1670 CE, when local Catholic devotees fled Dutch religious persecution in Mantota, carrying the wooden statue of the Virgin Mary deep into the royal forest territory of Kandy at Madhu. Throughout modern Sri Lankan history—even during decades of civil conflict—Madhu served as a neutral sanctuary of peace and reconciliation.'
   }
 ];
 
@@ -152,7 +210,7 @@ const Events = () => {
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased">
       
       {/* 1. HERO SECTION WITH WIDE SLIDESHOW */}
-      <section className="relative w-full h-[80vh] min-h-[500px] overflow-hidden bg-slate-950 flex items-center justify-center">
+      <section className="relative w-full h-[75vh] min-h-[480px] overflow-hidden bg-slate-950 flex items-center justify-center">
         {heroSlides.map((slide, index) => (
           <div
             key={index}
@@ -168,13 +226,13 @@ const Events = () => {
           </div>
         ))}
 
-        {/* Gradient Overlay */}
+        {/* Dark Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-black/30" />
 
-        {/* Hero Content */}
+        {/* Hero Text Content */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center space-y-4">
           <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-400/30 text-xs sm:text-sm font-semibold uppercase tracking-widest backdrop-blur-md">
-            🎉 Sri Lanka Cultural Calendar
+            🎉 Sri Lanka Cultural & Heritage Calendar
           </span>
           <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
             {heroSlides[activeSlide].title}
@@ -210,11 +268,11 @@ const Events = () => {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
             Major Cultural & Religious Festivals
           </h2>
-          <p className="max-w-2xl mx-auto text-slate-600 text-sm sm:text-base">
-            Explore Sri Lanka’s major celebrations, featuring event descriptions, famous festive foods, and historical origins.
+          <p className="max-w-3xl mx-auto text-slate-600 text-sm sm:text-base leading-relaxed">
+            Discover the rich historical origins, vibrant rituals, and mouthwatering festive foods associated with Sri Lanka’s most iconic celebrations throughout the year.
           </p>
 
-          {/* Filter Bar */}
+          {/* Filter Navigation Bar */}
           <div className="flex flex-wrap justify-center gap-2 pt-4">
             {['all', 'cultural', 'religious', 'pageant'].map((tab) => (
               <button
@@ -232,31 +290,31 @@ const Events = () => {
           </div>
         </div>
 
-        {/* Vertical Stack of Item Cards */}
+        {/* Vertical Stack of Festival Cards */}
         <div className="space-y-10">
           {filteredEvents.map((festival) => (
             <article
               key={festival.id}
-              className="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
+              className="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
             >
-              {/* Left Column: Festival Image Container */}
-              <div className="lg:col-span-5 relative w-full h-64 sm:h-72 lg:h-full min-h-[280px] bg-slate-900 overflow-hidden">
+              {/* Left Column: Image Display */}
+              <div className="lg:col-span-5 relative w-full h-64 sm:h-80 lg:h-full min-h-[320px] bg-slate-900 overflow-hidden">
                 <img
                   src={festival.image}
                   alt={festival.eventName}
                   className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent lg:hidden" />
-                <span className="absolute top-4 left-4 bg-amber-500 text-slate-950 text-xs font-black uppercase px-3 py-1 rounded-md shadow z-10">
+                <span className="absolute top-4 left-4 bg-amber-500 text-slate-950 text-xs font-black uppercase px-3.5 py-1.5 rounded-md shadow z-10">
                   {festival.timeOfYear}
                 </span>
               </div>
 
-              {/* Right Column: Complete Details in exact required structure */}
-              <div className="lg:col-span-7 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
+              {/* Right Column: Complete Details (Strictly Enforcing Requested Order) */}
+              <div className="lg:col-span-7 p-6 sm:p-8 space-y-6 flex flex-col justify-between">
                 
                 <div className="space-y-4">
-                  {/* Category & Religion Badges */}
+                  {/* Category & Religion Metadata Badges */}
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200/60">
                       {festival.category}
@@ -267,7 +325,7 @@ const Events = () => {
                   </div>
 
                   {/* 1. EVENT NAME */}
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
                     {festival.eventName}
                   </h3>
 
@@ -277,21 +335,26 @@ const Events = () => {
                   </p>
 
                   {/* 3. OVERVIEW */}
-                  <div className="border-t border-slate-100 pt-3 text-xs text-slate-600 leading-relaxed">
-                    <p><strong className="text-slate-800">Overview:</strong> {festival.fullDescription}</p>
+                  <div className="bg-slate-50/80 p-4 rounded-2xl border border-slate-100 text-xs text-slate-700 leading-relaxed space-y-1">
+                    <span className="font-bold text-slate-900 uppercase tracking-wider block text-[11px] text-amber-600">
+                      Festival Overview & Customs
+                    </span>
+                    <p className="text-slate-700 font-normal leading-relaxed">
+                      {festival.fullDescription}
+                    </p>
                   </div>
                 </div>
 
                 {/* 4. EVENT FAVOURITE FOODS */}
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                <div className="bg-amber-50/40 p-4 rounded-2xl border border-amber-100/80 space-y-2">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-amber-900 flex items-center gap-1.5">
                     <span>🍲</span> Famous Festive Foods:
                   </h4>
                   <div className="flex flex-wrap gap-1.5">
                     {festival.famousFoods.map((food, idx) => (
                       <span
                         key={idx}
-                        className="text-xs bg-white text-slate-800 font-medium px-2.5 py-1 rounded-lg border border-slate-200 shadow-2xs"
+                        className="text-xs bg-white text-slate-800 font-medium px-2.5 py-1 rounded-lg border border-amber-200/50 shadow-2xs"
                       >
                         {food}
                       </span>
@@ -303,9 +366,10 @@ const Events = () => {
                 <div className="pt-2 flex justify-end">
                   <button
                     onClick={() => setSelectedFestival(festival)}
-                    className="w-full sm:w-auto px-6 py-2.5 bg-slate-900 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition-colors duration-200 shadow"
+                    className="w-full sm:w-auto px-7 py-3 bg-slate-900 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition-colors duration-200 shadow-md flex items-center justify-center gap-2"
                   >
-                    Read Full History & Rituals →
+                    <span>Read Full History & Rituals</span>
+                    <span>→</span>
                   </button>
                 </div>
 
@@ -316,13 +380,13 @@ const Events = () => {
 
       </main>
 
-      {/* 3. MODAL POPUP FOR FULL HISTORICAL CONTENT */}
+      {/* 3. MODAL POPUP FOR HISTORICAL & RITUAL DETAILS */}
       {selectedFestival && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-xs animate-fadeIn">
           <div className="bg-white max-w-3xl w-full rounded-3xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col">
             
-            {/* Modal Header */}
-            <div className="relative h-48 bg-slate-900">
+            {/* Modal Image Header */}
+            <div className="relative h-56 bg-slate-900">
               <img
                 src={selectedFestival.image}
                 alt={selectedFestival.eventName}
@@ -343,31 +407,31 @@ const Events = () => {
               </div>
             </div>
 
-            {/* Modal Scrollable Content */}
+            {/* Modal Scrollable Body */}
             <div className="p-6 sm:p-8 overflow-y-auto space-y-6 text-sm text-slate-700 leading-relaxed">
               <div>
                 <h4 className="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
-                  <span>📜</span> Historical Origin & Roots
+                  <span>📜</span> Historical Roots & Antiquity
                 </h4>
-                <p className="bg-amber-50/50 p-4 rounded-xl border border-amber-100 text-slate-800">
+                <p className="bg-amber-50/60 p-4 rounded-xl border border-amber-200/60 text-slate-800 leading-relaxed">
                   {selectedFestival.historyContent}
                 </p>
               </div>
 
               <div>
                 <h4 className="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
-                  <span>🪔</span> Celebration Customs & Ceremonies
+                  <span>🪔</span> Celebration Customs & Modern Observances
                 </h4>
-                <p>{selectedFestival.fullDescription}</p>
+                <p className="leading-relaxed">{selectedFestival.fullDescription}</p>
               </div>
 
               <div>
                 <h4 className="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
-                  <span>🍛</span> Authentic Festive Foods
+                  <span>🍛</span> Traditional Festive Delicacies
                 </h4>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {selectedFestival.famousFoods.map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 p-2 bg-slate-50 rounded-lg border border-slate-100">
+                    <li key={i} className="flex items-center gap-2 p-2.5 bg-slate-50 rounded-lg border border-slate-100">
                       <span className="text-amber-500 font-bold">✓</span>
                       <span className="font-medium text-slate-800">{item}</span>
                     </li>
@@ -380,7 +444,7 @@ const Events = () => {
             <div className="p-4 bg-slate-50 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setSelectedFestival(null)}
-                className="px-6 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl"
+                className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl"
               >
                 Close Window
               </button>
@@ -390,7 +454,7 @@ const Events = () => {
         </div>
       )}
 
-      {/* 4. FOOTER OVERVIEW */}
+      {/* 4. FOOTER */}
       <footer className="bg-slate-900 text-slate-400 text-center py-8 text-xs border-t border-slate-800">
         <p>© {new Date().getFullYear()} Sri Lanka Cultural & Festival Directory. All rights reserved.</p>
       </footer>
