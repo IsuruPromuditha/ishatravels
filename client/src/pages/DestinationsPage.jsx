@@ -1,4 +1,17 @@
 import React, { useState } from 'react';
+import Trinco from '../assets/images/Trincomalee.jpg';
+import Mirissa_surfing from '../assets/images/Mirissa_surfing.png';
+import Yala from '../assets/images/Yala.png';
+import Kandy from '../assets/images/Kandy.png';
+import SigiriDabullu from '../assets/images/SigiriDabullu.jpg';
+import Ella from '../assets/images/ella.jpg';
+
+
+
+
+
+
+
 
 // --- SRI LANKA DESTINATIONS DATASET ---
 const DESTINATIONS_DATA = [
@@ -11,7 +24,7 @@ const DESTINATIONS_DATA = [
     reviewsCount: 320,
     shortDesc: 'Ancient rock fortress citadel, royal gardens, and thousand-year-old cave temple mural complexes.',
     bestTimeToVisit: 'Dec - Apr',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=800&q=80',
+    image: SigiriDabullu,
     highlights: ['Lion Rock Citadel', 'Dambulla Cave Temple', 'Minneriya Elephant Gathering'],
     topAttractions: ['Sigiriya Rock Fortress', 'Golden Temple of Dambulla', 'Pidurangala Rock'],
     idealStay: '2 - 3 Days'
@@ -25,7 +38,7 @@ const DESTINATIONS_DATA = [
     reviewsCount: 450,
     shortDesc: 'Misty mountain villages surrounded by endless tea plantations, waterfalls, and scenic railway bridges.',
     bestTimeToVisit: 'Jan - May',
-    image: 'https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=800&q=80',
+    image: Ella,
     highlights: ['Nine Arch Bridge', 'Little Adam\'s Peak', 'Demodara Loop Train'],
     topAttractions: ['Ravana Falls', 'Ella Rock Trail', 'Tea Factory Tours'],
     idealStay: '3 - 4 Days'
@@ -39,7 +52,7 @@ const DESTINATIONS_DATA = [
     reviewsCount: 510,
     shortDesc: 'Colonial Dutch forts, coconut palm groves, blue whale safari cruises, and golden surf beaches.',
     bestTimeToVisit: 'Nov - Apr',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+    image: Mirissa_surfing,
     highlights: ['Galle Fort Ramparts', 'Whale Watching Safaris', 'Coconut Tree Hill'],
     topAttractions: ['Galle Lighthouse', 'Mirissa Main Beach', 'Unawatuna Coral Reef'],
     idealStay: '3 - 5 Days'
@@ -53,7 +66,7 @@ const DESTINATIONS_DATA = [
     reviewsCount: 290,
     shortDesc: 'World-renowned wildlife sanctuary boasting one of the highest leopard densities on the planet.',
     bestTimeToVisit: 'Feb - Jul',
-    image: 'https://images.unsplash.com/photo-1534567153574-2b12153a87f0?auto=format&fit=crop&w=800&q=80',
+    image: Yala,
     highlights: ['Sri Lankan Leopard Tracking', 'Wild Elephant Herd Safaris', 'Sloth Bear Sightings'],
     topAttractions: ['Block 1 Safari Zone', 'Sithulpawwa Rock Temple', 'Kirinda Beach'],
     idealStay: '1 - 2 Days'
@@ -67,7 +80,7 @@ const DESTINATIONS_DATA = [
     reviewsCount: 380,
     shortDesc: 'The last royal capital of Sri Lanka, home to sacred Buddhist relics, lush botanical gardens, and lake vistas.',
     bestTimeToVisit: 'Dec - Apr',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=800&q=80',
+    image: Kandy,
     highlights: ['Temple of the Sacred Tooth Relic', 'Royal Botanical Gardens', 'Kandy Lake Walk'],
     topAttractions: ['Esala Perahera Procession', 'Udawatta Kele Sanctuary', 'Bahirawakanda Temple'],
     idealStay: '2 Days'
@@ -81,7 +94,7 @@ const DESTINATIONS_DATA = [
     reviewsCount: 210,
     shortDesc: 'Pristine white sand beaches, coral marine national parks, and historic cliffside Hindu temples.',
     bestTimeToVisit: 'May - Sep',
-    image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80',
+    image: Trinco,
     highlights: ['Pigeon Island Snorkeling', 'Koneswaram Kovil Cliff Temple', 'Swami Rock Whale Watching'],
     topAttractions: ['Nilaveli Beach', 'Marble Beach', 'Kanniya Hot Springs'],
     idealStay: '3 - 4 Days'
