@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 
 import Activity from '../assets/images/Activities/Activity.jpg';
 import Activity1 from '../assets/images/Activities/Activity1.jpg';
@@ -190,7 +190,7 @@ const allActivities = categories.flatMap((cat) =>
 );
 
 // Reusable activity card
-const ActivityCard = ({ activity, isFavourite, onToggleFavourite }) => (
+const ActivityCard = ({ activity, isFavourite, onToggleFavourite, onOpen }) => (
   <article className="group bg-white rounded-2xl overflow-hidden border border-black/10 shadow-md hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col">
     {/* Image */}
     <div className="relative h-56 overflow-hidden bg-slate-200">
@@ -231,17 +231,111 @@ const ActivityCard = ({ activity, isFavourite, onToggleFavourite }) => (
       <p className="text-sm text-black/80 leading-relaxed mb-5 flex-grow">
         {activity.description}
       </p>
-      <button className="w-full py-2.5 bg-black hover:bg-slate-800 text-white text-sm font-semibold rounded-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black">
+      <button
+        onClick={() => onOpen(activity)}
+        className="w-full py-2.5 bg-black hover:bg-slate-800 text-white text-sm font-semibold rounded-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-black"
+      >
         Explore Details
       </button>
     </div>
   </article>
 );
 
+// Pop-up window with full activity details
+const ActivityModal = ({ activity, isFavourite, onToggleFavourite, onClose }) => {
+  // Close on Escape + lock background scroll while open
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && onClose();
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  const places = activity.location.split(/,|&|\//).map((p) => p.trim()).filter(Boolean);
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="activity-modal-title"
+    >
+      <div
+        className="relative bg-white text-black w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          aria-label="Close details"
+          className="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-white/95 shadow flex items-center justify-center text-xl text-black hover:bg-black hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+        >
+          ✕
+        </button>
+
+        {/* Image */}
+        <div className="relative h-64 md:h-80 bg-slate-200">
+          <img src={activity.image} alt={activity.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/60 to-transparent" />
+          <span className="absolute bottom-4 left-5 bg-white/95 text-black text-xs font-semibold px-3 py-1 rounded-full shadow">
+            {activity.categoryEmoji} {activity.categoryName}
+          </span>
+        </div>
+
+        {/* Details */}
+        <div className="p-6 md:p-8">
+          <h3 id="activity-modal-title" className="text-2xl md:text-3xl font-bold mb-4">
+            {activity.title}
+          </h3>
+
+          <div className="mb-5">
+            <p className="text-sm font-semibold mb-2">📍 Where</p>
+            <div className="flex flex-wrap gap-2">
+              {places.map((place) => (
+                <span key={place} className="text-sm border border-black/20 rounded-full px-3 py-1">
+                  {place}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mb-8">
+            <p className="text-sm font-semibold mb-2">About this experience</p>
+            <p className="text-base leading-relaxed text-black/80">{activity.description}</p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button
+              onClick={() => onToggleFavourite(activity.id)}
+              aria-pressed={isFavourite}
+              className="flex-1 py-3 rounded-lg border border-black text-sm font-semibold hover:bg-black hover:text-white transition-colors"
+            >
+              {isFavourite ? "♥ Saved to favourites" : "♡ Save to favourites"}
+            </button>
+            <button
+              onClick={onClose}
+              className="flex-1 py-3 rounded-lg bg-black text-white text-sm font-semibold hover:bg-slate-800 transition-colors"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Activities = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeCategory, setActiveCategory] = useState("all");
   const [favourites, setFavourites] = useState([]);
+  const [selectedActivity, setSelectedActivity] = useState(null);
+  const closeModal = useCallback(() => setSelectedActivity(null), []);
 
   // 3000ms Hero Slider Auto-slide timer (UNTOUCHED)
   useEffect(() => {
@@ -381,9 +475,20 @@ const Activities = () => {
             activity={activity}
             isFavourite={favourites.includes(activity.id)}
             onToggleFavourite={toggleFavourite}
+            onOpen={setSelectedActivity}
           />
         ))}
       </div>
+
+      {/* Details pop-up */}
+      {selectedActivity && (
+        <ActivityModal
+          activity={selectedActivity}
+          isFavourite={favourites.includes(selectedActivity.id)}
+          onToggleFavourite={toggleFavourite}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };
