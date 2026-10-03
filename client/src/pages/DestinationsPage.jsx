@@ -39,7 +39,7 @@ const DESTINATIONS_DATA = [
     reviewsCount: 510,
     shortDesc: 'Colonial Dutch forts, coconut palm groves, blue whale safari cruises, and golden surf beaches.',
     bestTimeToVisit: 'Nov - Apr',
-    image: 'https://images.unsplash.com/photo-1568430460464-02e3cb184583?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
     highlights: ['Galle Fort Ramparts', 'Whale Watching Safaris', 'Coconut Tree Hill'],
     topAttractions: ['Galle Lighthouse', 'Mirissa Main Beach', 'Unawatuna Coral Reef'],
     idealStay: '3 - 5 Days'
