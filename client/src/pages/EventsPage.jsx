@@ -1,19 +1,34 @@
 import React, { useState, useEffect } from 'react';
 
+import Aselaperahara01 from '../assets/images/Festival/Aselaperahara01.jpg';
+import Aselapearahara02 from '../assets/images/Festival/Aselapearahara02.jpg';
+import Aselaperahara03 from '../assets/images/Festival/Aselaperahara03.jpg';
+import katharagama04 from '../assets/images/Festival/katharagama04.jpg';
+import madu02 from '../assets/images/Festival/madu02.jpg';
+import poson01 from '../assets/images/Festival/poson01.jpg';
+import thaipongal02 from '../assets/images/Festival/thaipongal02.jpg';
+import vesak01 from '../assets/images/Festival/vesak01.jpg';
+import vesak02 from '../assets/images/Festival/vesak02.jpg';
+import madu05 from '../assets/images/Festival/madu05.jpg';
+import sinhalatamil from '../assets/images/Festival/sinhalatamil.jpeg';
+
+
+
+
 // Hero Slider Images
 const heroSlides = [
   {
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1920&q=80',
+    image: Aselaperahara01,
     title: 'Kandy Esala Perahera',
     subtitle: "Asia's Grandest Cultural & Religious Pageant"
   },
   {
-    image: 'https://images.unsplash.com/photo-1578564499878-1f6305a2e5eb?auto=format&fit=crop&w=1920&q=80',
+    image:vesak01,
     title: 'Vesak Lantern Festival',
     subtitle: 'Illuminating the Island in Celebration of Peace & Light'
   },
   {
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1920&q=80',
+    image: vesak02,
     title: 'Sinhala & Tamil New Year',
     subtitle: 'Harvest, Unity, and Ancient Astrological Customs'
   }
@@ -27,7 +42,7 @@ const festivalEventsData = [
     category: 'Cultural & National',
     timeOfYear: 'Mid-April (April 13th – 14th)',
     religion: 'Buddhist & Hindu Traditions',
-    image: 'https://images.unsplash.com/photo-1546708973-b339540b5162?auto=format&fit=crop&w=1200&q=80',
+    image: sinhalatamil,
     famousFoods: [
       'Kiribath (Milk Rice)', 
       'Kevum (Oil Cakes)', 
@@ -48,7 +63,7 @@ const festivalEventsData = [
     category: 'Religious Pageant',
     timeOfYear: 'July / August (Esala Month)',
     religion: 'Buddhism & Devala Heritage',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=80',
+    image: Aselapearahara02,
     famousFoods: [
       'Helapa (Finger Millet & Coconut Steamed Treats)', 
       'Aggala (Spiced Roasted Rice Balls)', 
@@ -67,7 +82,7 @@ const festivalEventsData = [
     category: 'Religious & Light Festival',
     timeOfYear: 'May (May Full Moon)',
     religion: 'Theravada Buddhism',
-    image: 'https://images.unsplash.com/photo-1578564499878-1f6305a2e5eb?auto=format&fit=crop&w=1200&q=80',
+    image: vesak02,
     famousFoods: [
       'Dansala Charity Feasts (Free Meals)', 
       'Sago Kanji (Tapioca & Coconut Milk Porridge)', 
@@ -85,7 +100,7 @@ const festivalEventsData = [
     category: 'Hindu Chariot Pageant',
     timeOfYear: 'July / August',
     religion: 'Hinduism (Tamil Tradition)',
-    image: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=80',
+    image: madu05,
     famousFoods: [
       'Medhu Vadai (Savory Lentil Fritters)', 
       'Masala Vadai', 
@@ -104,7 +119,7 @@ const festivalEventsData = [
     category: 'Agrarian & Cultural',
     timeOfYear: 'Mid-January (January 14th – 15th)',
     religion: 'Hinduism & Tamil Culture',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    image: thaipongal02,
     famousFoods: [
       'Sweet Thai Pongal (Boiled Rice with Jaggery, Cashews & Raisins)', 
       'Ven Pongal (Savory Pepper & Ghee Rice)', 
@@ -122,7 +137,7 @@ const festivalEventsData = [
     category: 'Religious & Historical',
     timeOfYear: 'June (June Full Moon)',
     religion: 'Buddhism',
-    image: 'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=1200&q=80',
+    image: poson01,
     famousFoods: [
       'Poson Dansala Rice & Curry Feasts', 
       'Sago & Coconut Milk Porridge', 
@@ -139,7 +154,7 @@ const festivalEventsData = [
     category: 'Urban Buddhist Pageant',
     timeOfYear: 'February (Navam Full Moon)',
     religion: 'Buddhism',
-    image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80',
+    image: Aselaperahara03,
     famousFoods: [
       'Street Food Eats (Isso Vadai / Prawn Cakes)', 
       'Kiri Toffee', 
@@ -157,7 +172,7 @@ const festivalEventsData = [
     category: 'Multi-Faith Pilgrimage',
     timeOfYear: 'July / August',
     religion: 'Buddhist, Hindu, Muslim & Vedda Heritage',
-    image: 'https://images.unsplash.com/photo-1588598198321-9735fd52455b?auto=format&fit=crop&w=1200&q=80',
+    image: katharagama04,
     famousFoods: [
       'Kataragama Worship Fruit Baskets', 
       'Murthan Rice (Sacred Temple Rice)', 
@@ -175,7 +190,7 @@ const festivalEventsData = [
     category: 'Christian Pilgrimage',
     timeOfYear: 'August (August 15th Peak)',
     religion: 'Roman Catholicism',
-    image: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=80',
+    image:madu02 ,
     famousFoods: [
       'Campfire Stews & Coconut Curries', 
       'Fried Fish with Chili Sambal', 
