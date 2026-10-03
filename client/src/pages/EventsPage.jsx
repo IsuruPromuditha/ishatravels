@@ -239,15 +239,15 @@ const Events = () => {
               key={festival.id}
               className="bg-white rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0"
             >
-              {/* Left Column: Festival Image */}
-              <div className="lg:col-span-5 relative min-h-[280px] lg:min-h-full bg-slate-900">
+              {/* Left Column: Festival Image Container with Fixed Standard Height & Aspect Ratio */}
+              <div className="lg:col-span-5 relative w-full h-64 sm:h-72 lg:h-full min-h-[280px] bg-slate-900 overflow-hidden">
                 <img
                   src={festival.image}
                   alt={festival.eventName}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent lg:hidden" />
-                <span className="absolute top-4 left-4 bg-amber-500 text-slate-950 text-xs font-black uppercase px-3 py-1 rounded-md shadow">
+                <span className="absolute top-4 left-4 bg-amber-500 text-slate-950 text-xs font-black uppercase px-3 py-1 rounded-md shadow z-10">
                   {festival.timeOfYear}
                 </span>
               </div>
