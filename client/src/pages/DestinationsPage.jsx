@@ -108,33 +108,32 @@ const DestinationsPage = () => {
     <div className="min-h-screen bg-slate-50 text-slate-800">
       
       {/* --- HERO HEADER --- */}
-      <section className="relative bg-emerald-950 py-20 px-4 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <span className="inline-block px-3 py-1 bg-emerald-800/80 text-emerald-300 text-xs font-bold uppercase tracking-widest rounded-full mb-4">
-            Wonder of Asia
-          </span>
-          <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white">
-            Sri Lanka Destinations
-          </h1>
-          <p className="mt-4 text-slate-300 max-w-2xl mx-auto text-base sm:text-lg">
-            Explore ancient heritage kingdoms, wild national reserves, mist-covered mountain valleys, and pristine tropical beaches.
-          </p>
+      <section className="relative isolate overflow-hidden bg-slate-950 px-4 py-20 text-white sm:py-24">
+  <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:radial-gradient(#34d399_1px,transparent_1px)] [background-size:18px_18px]" />
+  <div className="pointer-events-none absolute -left-32 top-10 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl" />
+  <div className="pointer-events-none absolute -right-32 bottom-0 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
 
-          {/* Quick Stats */}
-          <div className="mt-8 flex flex-wrap justify-center gap-6 text-slate-300 text-sm font-semibold">
-            <div className="flex items-center gap-2">
-              <span className="text-emerald-400 font-bold">8+</span> UNESCO Sites
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-emerald-400 font-bold">1,340 KM</span> Coastline
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-emerald-400 font-bold">26</span> National Parks
-            </div>
-          </div>
-        </div>
-      </section>
+  <div className="relative z-10 mx-auto max-w-7xl text-center">
+    <span className="mb-4 inline-flex rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-amber-300">
+      Wonder of Asia
+    </span>
+
+    <h1 className="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl md:text-6xl">
+      Sri Lanka Destinations
+    </h1>
+
+    <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+      Explore ancient heritage kingdoms, wild national reserves, mist-covered
+      mountain valleys, and pristine tropical beaches.
+    </p>
+
+    <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-semibold text-slate-300">
+      <div><span className="font-bold text-emerald-400">8+</span> UNESCO Sites</div>
+      <div><span className="font-bold text-emerald-400">1,340 KM</span> Coastline</div>
+      <div><span className="font-bold text-emerald-400">26</span> National Parks</div>
+    </div>
+  </div>
+</section>
 
       {/* --- SEARCH & CATEGORY FILTER BAR --- */}
       <section className="max-w-7xl mx-auto px-4 -mt-8 relative z-20">
