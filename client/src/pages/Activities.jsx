@@ -4,8 +4,7 @@ import Activity from '../assets/images/Activities/Activity.jpg';
 import Activity1 from '../assets/images/Activities/Activity1.jpg';
 import Activity2 from '../assets/images/Activities/Activity2.jpg';
 
-
-// Hero Slider Data (Featured highlights)
+// Hero Slider Data (Featured highlights - UNTOUCHED)
 const heroSlides = [
   {
     id: 1,
@@ -30,130 +29,314 @@ const heroSlides = [
   }
 ];
 
-const activitiesData = [
+// Reusable Image Carousel Component for Individual Activity Cards
+const CardImageCarousel = ({ images, title }) => {
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+
+  const prevImage = (e) => {
+    e.stopPropagation();
+    setActiveImgIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const nextImage = (e) => {
+    e.stopPropagation();
+    setActiveImgIndex((prev) => (prev + 1) % images.length);
+  };
+
+  return (
+    <div className="relative h-56 w-full overflow-hidden group">
+      {images.map((imgUrl, idx) => (
+        <img
+          key={idx}
+          src={imgUrl}
+          alt={`${title} - view ${idx + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out ${
+            idx === activeImgIndex ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          }`}
+        />
+      ))}
+
+      {/* Carousel Navigation Arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prevImage}
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-slate-950/60 hover:bg-slate-900 text-white p-1.5 rounded-full backdrop-blur-xs border border-slate-700/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 text-xs"
+            aria-label="Previous Image"
+          >
+            ❮
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-slate-950/60 hover:bg-slate-900 text-white p-1.5 rounded-full backdrop-blur-xs border border-slate-700/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 text-xs"
+            aria-label="Next Image"
+          >
+            ❯
+          </button>
+
+          {/* Indicator Dots */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+            {images.map((_, dotIdx) => (
+              <button
+                key={dotIdx}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveImgIndex(dotIdx);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  activeImgIndex === dotIdx ? "w-4 bg-sky-500" : "w-1.5 bg-white/60"
+                }`}
+                aria-label={`Go to image ${dotIdx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+// Structured Activities Data grouped into 5 requested categories
+const activityCategories = [
   {
-    id: 1,
-    title: "Climb Sigiriya Lion Rock",
-    location: "Sigiriya, Central Province",
-    description: "Ascend the 200-meter-high ancient rock fortress built by King Kashyapa in the 5th century. Discover famous mirror wall frescoes and ancient water gardens at the summit.",
-    image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?q=80&w=1000&auto=format&fit=crop",
-    category: "Adventure & Heritage",
-    rating: 4.9
+    categoryName: "1. Water Sports & Ocean Adventures",
+    description: "High-energy water excursions, reef diving, and marine encounters along Sri Lanka's coastline.",
+    items: [
+      {
+        id: "ws-1",
+        title: "Surfing Coastal Point Breaks",
+        location: "Weligama, Arugam Bay & Hikkaduwa",
+        rating: 4.9,
+        description: "Catch world-class point breaks and reef breaks tailored for all skill levels—from smooth beginner beach breaks in Weligama to famous eastern point breaks in Arugam Bay.",
+        images: [
+          "https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1455729552865-3658a5d3a092?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "ws-2",
+        title: "Scuba Diving & Coral Snorkeling",
+        location: "Pigeon Island, Hikkaduwa & Trincomalee",
+        rating: 4.8,
+        description: "Explore historic underwater shipwrecks, rich coral gardens, and swim alongside gentle blacktip reef sharks and sea turtles in crystalline coastal waters.",
+        images: [
+          "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1582967788606-a171c1080cb0?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "ws-3",
+        title: "Whale & Dolphin Watching Safaris",
+        location: "Mirissa, Kalpitiya & Trincomalee",
+        rating: 4.9,
+        description: "Charter ocean boat tours to spot massive Blue Whales, Sperm Whales, and acrobatic pods of spinner dolphins along deep offshore trenches.",
+        images: [
+          "https://images.unsplash.com/photo-1568430462629-a861758d7839?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1570459027562-4a916cc6113f?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "ws-4",
+        title: "Kitesurfing Kalpitiya Lagoon",
+        location: "Kalpitiya Peninsula",
+        rating: 4.7,
+        description: "Harness stable coastal trade winds across expansive flat-water lagoons and open ocean waves, perfect for freestyle kiters and beginners alike.",
+        images: [
+          "https://images.unsplash.com/photo-1516834474-48c0abc2a902?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1508873696983-2df515122519?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "ws-5",
+        title: "Kitulgala White Water Rafting",
+        location: "Kitulgala, Kelani River",
+        rating: 4.8,
+        description: "Navigate thrill-packed Class II to IV river rapids carving through dense rainforest canyons along the picturesque Kelani River.",
+        images: [
+          "https://images.unsplash.com/photo-1530866495561-507c9faab2ed?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=1000&auto=format&fit=crop"
+        ]
+      }
+    ]
   },
   {
-    id: 2,
-    title: "Safari at Yala National Park",
-    location: "Yala, Southern Province",
-    description: "Embark on an exciting 4x4 jeep safari through dense scrubland to spot Sri Lankan leopards, sloth bears, wild elephants, and vibrant endemic bird species.",
-    image: "https://images.unsplash.com/photo-1544979590-37e9b47eb705?q=80&w=1000&auto=format&fit=crop",
-    category: "Wildlife & Nature",
-    rating: 4.8
+    categoryName: "2. Wildlife & Nature Photography",
+    description: "Immersive wilderness expeditions tracking apex predators, megafauna, and rare endemic species.",
+    items: [
+      {
+        id: "wn-1",
+        title: "4x4 Wilderness Jeep Safaris",
+        location: "Yala, Wilpattu & Udawalawe",
+        rating: 4.9,
+        description: "Track elusive Sri Lankan leopards, sloth bears, wild Asian elephants, and marsh crocodiles across dry-zone scrublands and natural lakes.",
+        images: [
+          "https://images.unsplash.com/photo-1544979590-37e9b47eb705?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1551009175-15bdf9dcb580?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "wn-2",
+        title: "The Great Elephant Gathering",
+        location: "Minneriya & Kaudulla National Parks",
+        rating: 4.8,
+        description: "Witness the world's largest recurring gathering of Asian elephants, where hundreds of wild herds congregate around ancient reservoir shores during dry season.",
+        images: [
+          "https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1581852017103-68ac65514cf7?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "wn-3",
+        title: "Sinharaja Rainforest Bird Watching",
+        location: "Sinharaja Forest Reserve & Bundala",
+        rating: 4.8,
+        description: "Embark on guided canopy treks through UNESCO virgin rainforests to photograph rare endemic birds, Malabar Pied Hornbills, and colorful mixed-species flocks.",
+        images: [
+          "https://images.unsplash.com/photo-1511497584788-876761c11969?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1000&auto=format&fit=crop"
+        ]
+      }
+    ]
   },
   {
-    id: 3,
-    title: "Nine Arch Bridge & Ella Train Ride",
-    location: "Ella, Uva Province",
-    description: "Experience one of the world's most scenic train journeys winding through emerald tea plantations, crossing the iconic colonial-era Nine Arch Bridge in Ella.",
-    image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1000&auto=format&fit=crop",
-    category: "Sightseeing & Transit",
-    rating: 4.9
+    categoryName: "3. Hiking, Trekking & Aerial Sports",
+    description: "Panoramic mountain trails, overnight summits, scenic railways, and high-altitude flight experiences.",
+    items: [
+      {
+        id: "ht-1",
+        title: "High-Altitude Tea Country Trails",
+        location: "Pekoe Trail, Ella & Horton Plains",
+        rating: 4.9,
+        description: "Hike world-class ridge lines including Ella Rock and World's End precipices, winding through cloud forests and terraced emerald tea plantations.",
+        images: [
+          "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "ht-2",
+        title: "Night Pilgrimage up Adam's Peak",
+        location: "Sri Pada / Nallathanniya",
+        rating: 4.9,
+        description: "Ascend 5,500 illuminated stone steps under starry skies to reach the sacred summit footprint, catching a breathtaking sunrise over a sea of clouds.",
+        images: [
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "ht-3",
+        title: "Kandy to Ella Scenic Train Ride",
+        location: "Central Highlands & Nine Arch Bridge",
+        rating: 4.9,
+        description: "Ride one of the world's most breathtaking scenic railways, crossing colonial stone viaducts and misty mountain passes with open-window views.",
+        images: [
+          "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "ht-4",
+        title: "Hot Air Ballooning Over Sigiriya",
+        location: "Sigiriya & Dambulla",
+        rating: 4.9,
+        description: "Float gracefully above central Sri Lanka at sunrise for uninterrupted aerial vistas of ancient rock fortresses, forest canopies, and historic reservoirs.",
+        images: [
+          "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=1000&auto=format&fit=crop"
+        ]
+      }
+    ]
   },
   {
-    id: 4,
-    title: "Surfing at Arugam Bay",
-    location: "Arugam Bay, Eastern Province",
-    description: "Catch world-class point break waves at Main Point or enjoy gentle beach breaks for beginners along the relaxed east coast surfing haven.",
-    image: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?q=80&w=1000&auto=format&fit=crop",
-    category: "Water Sports",
-    rating: 4.7
+    categoryName: "4. Music, Nightlife & Culture",
+    description: "Vibrant beachside soundscapes, ancient rhythmic arts, and energetic nocturnal street markets.",
+    items: [
+      {
+        id: "mc-1",
+        title: "Coastal Music Events & Beach Parties",
+        location: "Mirissa, Hiriketiya & Arugam Bay",
+        rating: 4.8,
+        description: "Experience vibrant sundowner DJ sessions, underground progressive & organic house dance events, and acoustic beach gatherings along golden coastlines.",
+        images: [
+          "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "mc-2",
+        title: "Kandyan Dance & Cultural Rituals",
+        location: "Kandy, Galle Fort & Colombo",
+        rating: 4.9,
+        description: "Witness captivating live drumming rituals, fire-walking performances, and elaborate traditional Kandyan dance processions echoing centuries of heritage.",
+        images: [
+          "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "mc-3",
+        title: "Night Markets & Street Food Walks",
+        location: "Colombo Galle Face Green & Kandy",
+        rating: 4.7,
+        description: "Savor sizzled kottu roti, crispy egg hoppers, and freshly grilled ocean seafood prepared live at bustling nocturnal street stalls and night markets.",
+        images: [
+          "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=1000&auto=format&fit=crop"
+        ]
+      }
+    ]
   },
   {
-    id: 5,
-    title: "Hike Little Adam's Peak",
-    location: "Ella, Uva Province",
-    description: "A gentle yet rewarding trek winding through lush tea gardens to a spectacular mountain peak offering panoramic views of Ella Gap and valley below.",
-    image: "https://images.unsplash.com/photo-1589308078059-be1415eab4c3?q=80&w=1000&auto=format&fit=crop",
-    category: "Trekking & Hiking",
-    rating: 4.8
-  },
-  {
-    id: 6,
-    title: "Explore Historic Galle Fort",
-    location: "Galle, Southern Province",
-    description: "Walk along the 17th-century Dutch ramparts, explore cobblestone alleys filled with chic boutiques, colonial villas, cozy cafes, and sunset views over the ocean.",
-    image: "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=1000&auto=format&fit=crop",
-    category: "Culture & History",
-    rating: 4.9
-  },
-  {
-    id: 7,
-    title: "Trek Sinharaja Rain Forest",
-    location: "Deniyaya / Kalawana",
-    description: "Guided jungle trekking through a UNESCO World Heritage tropical rainforest, home to rare endemic birds, reptiles, amphibians, and dense canopy trails.",
-    image: "https://images.unsplash.com/photo-1511497584788-876761c11969?q=80&w=1000&auto=format&fit=crop",
-    category: "Eco-Adventure",
-    rating: 4.8
-  },
-  {
-    id: 8,
-    title: "Night Pilgrimage up Adam's Peak",
-    location: "Nallathanniya, Central Highlands",
-    description: "Climb 5,500 stone steps under illuminated mountain paths to reach the sacred summit footprint before catching a breathtaking sunrise above the cloud layer.",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop",
-    category: "Pilgrimage & Trekking",
-    rating: 4.9
-  },
-  {
-    id: 9,
-    title: "Diyaluma Falls Natural Pool Dip",
-    location: "Koslanda, Badulla District",
-    description: "Hike to the top of Sri Lanka's second-highest waterfall to swim in cascading natural infinity pools perched edge-of-the-cliff above the surrounding valleys.",
-    image: "https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=1000&auto=format&fit=crop",
-    category: "Nature & Swimming",
-    rating: 4.7
-  },
-  {
-    id: 10,
-    title: "Polonnaruwa Ancient City Bike Tour",
-    location: "Polonnaruwa, North Central Province",
-    description: "Rent a bicycle to explore sprawling ruins of 12th-century palaces, massive stupas, and the majestic rock-carved Buddha statues at Gal Vihara.",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop",
-    category: "Heritage & Cycling",
-    rating: 4.8
-  },
-  {
-    id: 11,
-    title: "Dambulla Cave Temple Exploration",
-    location: "Dambulla, Matale District",
-    description: "Step inside five cave sanctuaries cut into a massive granite cliff, housing over 150 serene Buddha statues and intricate ancient wall murals.",
-    image: "https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1000&auto=format&fit=crop",
-    category: "Culture & Art",
-    rating: 4.8
-  },
-  {
-    id: 12,
-    title: "Hot Air Ballooning in Sigiriya",
-    location: "Dambulla / Sigiriya",
-    description: "Soar above central Sri Lanka at sunrise for uninterrupted aerial views of lush forests, ancient reservoirs, and the striking silhouette of Sigiriya Rock.",
-    image: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?q=80&w=1000&auto=format&fit=crop",
-    category: "Aerial & Leisure",
-    rating: 4.9
-  },
-  {
-    id: 13,
-    title: "Snorkeling at Pigeon Island",
-    location: "Nilaveli, Trincomalee",
-    description: "Take a boat out to a marine national park to swim alongside blacktip reef sharks, hawksbill sea turtles, and vibrant coral reef ecosystems.",
-    image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1000&auto=format&fit=crop",
-    category: "Marine & Snorkeling",
-    rating: 4.8
+    categoryName: "5. Wellness, Culinary & Local Experiences",
+    description: "Rejuvenating traditional healing, authentic culinary masterclasses, and single-origin tea heritage.",
+    items: [
+      {
+        id: "wc-1",
+        title: "Ayurvedic Spa & Wellness Retreats",
+        location: "Bentota, Kandy & Tangalle",
+        rating: 4.8,
+        description: "Restore mind and body with ancient Ayurvedic remedies, warm Abhyanga herbal oil massages, steam baths, and sunset yoga sessions set in serene natural surroundings.",
+        images: [
+          "https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "wc-2",
+        title: "Sri Lankan Cooking Masterclasses",
+        location: "Ella, Galle & Sigiriya",
+        rating: 4.9,
+        description: "Join local chefs in farm-to-table culinary lessons, hand-grinding aromatic spice blends and crafting authentic clay-pot coconut curries.",
+        images: [
+          "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1606787366850-de6330128bfc?q=80&w=1000&auto=format&fit=crop"
+        ]
+      },
+      {
+        id: "wc-3",
+        title: "Tea Tasting & Factory Heritage Tours",
+        location: "Nuwara Eliya & Hatton",
+        rating: 4.8,
+        description: "Pluck fresh tea leaves alongside local estate artisans and tour historic high-country factories to sample world-renowned single-origin Ceylon tea grades.",
+        images: [
+          "https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=1000&auto=format&fit=crop",
+          "https://images.unsplash.com/photo-1597481499750-3e6b22637e12?q=80&w=1000&auto=format&fit=crop"
+        ]
+      }
+    ]
   }
 ];
 
 const Activities = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  // 3000ms Auto-slide timer
+  // 3000ms Hero Slider Auto-slide timer (UNTOUCHED)
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -171,10 +354,10 @@ const Activities = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 pb-16 font-sans">
+    <div className="min-h-screen bg-slate-900 font-sans">
       
-      {/* Large Hero Slider Section (3000ms Timer) */}
-      <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden bg-slate-950 mb-12">
+      {/* Large Hero Slider Section (3000ms Timer - UNTOUCHED) */}
+      <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden bg-slate-950">
         {heroSlides.map((slide, index) => (
           <div
             key={slide.id}
@@ -239,64 +422,70 @@ const Activities = () => {
         </div>
       </div>
 
-      {/* Main Section Header */}
-      <header className="text-center max-w-3xl mx-auto mb-10 px-5">
-        <h2 className="text-3xl md:text-4xl font-bold text-sky-400 mb-3 tracking-tight">
-          Top 13 Outdoor Activities & Destinations
-        </h2>
-        <p className="text-sm md:text-base text-slate-400">
-          Explore curated adventures, heritage sites, and wildlife excursions across Sri Lanka.
-        </p>
-      </header>
+      {/* Main White Content Area After Hero Slider */}
+      <main className="bg-white text-slate-900 py-16 pb-24">
+        
+        {/* Page Title & Intro */}
+        <header className="text-center max-w-4xl mx-auto mb-14 px-5">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+            Curated Outdoor Activities & Experiences
+          </h2>
+          <p className="text-slate-600 text-base md:text-lg leading-relaxed">
+            Explore Sri Lanka through 5 curated adventure pillars—featuring wave surfing, wildlife tracking, mountain ascents, cultural beats, and holistic culinary traditions.
+          </p>
+        </header>
 
-      {/* Grid Layout for All 13 Cards */}
-      <div className="max-w-7xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-        {activitiesData.map((activity) => (
-          <div
-            key={activity.id}
-            className="bg-slate-800 rounded-2xl overflow-hidden shadow-xl flex flex-col hover:-translate-y-1 transition-transform duration-200 border border-slate-700/50"
-          >
-            {/* Card Image */}
-            <div className="relative h-52 w-full overflow-hidden">
-              <span className="absolute top-3 left-3 bg-sky-400 text-slate-950 font-bold rounded-full w-8 h-8 flex items-center justify-center text-sm z-10 shadow-md">
-                {activity.id}
-              </span>
-              <img
-                src={activity.image}
-                alt={activity.title}
-                className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-              />
-              <span className="absolute bottom-3 right-3 bg-slate-900/80 backdrop-blur-sm text-sky-400 text-xs font-semibold px-3 py-1 rounded-full border border-sky-400/20">
-                {activity.category}
-              </span>
-            </div>
-
-            {/* Card Body */}
-            <div className="p-5 flex flex-col flex-grow">
-              <div className="flex justify-between items-center text-xs text-slate-400 mb-2">
-                <span className="font-medium truncate max-w-[70%]">
-                  📍 {activity.location}
-                </span>
-                <span className="font-semibold text-amber-400 flex items-center gap-1">
-                  ⭐ {activity.rating}
-                </span>
+        {/* Categorized Activities Sections */}
+        <div className="max-w-7xl mx-auto px-5 space-y-16">
+          {activityCategories.map((section, sectionIdx) => (
+            <section key={sectionIdx} className="scroll-mt-6">
+              
+              {/* Category Section Header */}
+              <div className="border-b border-slate-200 pb-4 mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-sky-700 tracking-wide mb-1">
+                  {section.categoryName}
+                </h3>
+                <p className="text-slate-500 text-sm md:text-base">
+                  {section.description}
+                </p>
               </div>
 
-              <h3 className="text-xl font-semibold text-slate-100 mb-2 line-clamp-1">
-                {activity.title}
-              </h3>
+              {/* Grid of Activity Cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+                {section.items.map((activity) => (
+                  <div
+                    key={activity.id}
+                    className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl flex flex-col hover:-translate-y-1.5 transition-all duration-300 border border-slate-200"
+                  >
+                    {/* Card Image Carousel */}
+                    <CardImageCarousel images={activity.images} title={activity.title} />
 
-              <p className="text-sm text-slate-300 leading-relaxed mb-5 flex-grow line-clamp-3">
-                {activity.description}
-              </p>
+                    {/* Card Body */}
+                    <div className="p-5 flex flex-col flex-grow">
+                      <div className="flex justify-between items-center text-xs text-slate-500 mb-2">
+                        <span className="font-medium truncate max-w-[70%] text-slate-600">
+                          📍 {activity.location}
+                        </span>
+                        <span className="font-semibold text-amber-600 flex items-center gap-1 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+                          ⭐ {activity.rating}
+                        </span>
+                      </div>
 
-              <button className="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white text-sm font-semibold rounded-lg shadow transition-colors duration-150">
-                Explore Details
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+                      <h4 className="text-xl font-bold text-slate-900 mb-2 line-clamp-1">
+                        {activity.title}
+                      </h4>
+
+                      <p className="text-sm text-slate-600 leading-relaxed flex-grow line-clamp-3">
+                        {activity.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </main>
     </div>
   );
 };
