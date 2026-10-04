@@ -7,6 +7,7 @@ import DestinationsPage from '../pages/DestinationsPage';
 import TourPackages from '../pages/TourPackages';
 import EventsPage from '../pages/EventsPage';
 import ActivitiesPage from '../pages/Activities';
+import Faq from '../pages/Faq';
 
 const AppRoutes = () => {
   return (
@@ -19,6 +20,8 @@ const AppRoutes = () => {
         <Route path="events" element={<EventsPage />} />
         <Route path="activities" element={<ActivitiesPage />} />
         <Route path="offers" element={<DestinationsPage />} />
+        <Route path="faqs" element={<Faq />} />
+        
       </Route>
     </Routes>
   );
