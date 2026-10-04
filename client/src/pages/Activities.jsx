@@ -3,6 +3,9 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Activity from '../assets/images/Activities/Activity.jpg';
 import Activity1 from '../assets/images/Activities/Activity1.jpg';
 import Activity2 from '../assets/images/Activities/Activity2.jpg';
+import surf from '../assets/images/Activities/surf.jpg';
+import beach from '../assets/images/Activities/beach.jpg';
+
 
 // Hero Slider Data (UNTOUCHED)
 const heroSlides = [
@@ -42,19 +45,19 @@ const categories = [
         title: "Surfing",
         location: "Weligama, Arugam Bay & Hikkaduwa",
         description: "World-class point breaks and reef breaks for all skill levels (beginner waves in Weligama; reef/point breaks in Arugam Bay and Hikkaduwa).",
-        image: img("photo-1502680390469-be75c86b636f")
+        image: surf
       },
       {
         title: "Scuba Diving & Snorkeling",
         location: "Pigeon Island, Hikkaduwa & Trincomalee",
         description: "Shipwreck dives, coral reef exploration, and swimming with blacktip reef sharks or sea turtles (Pigeon Island, Hikkaduwa, Trincomalee).",
-        image: img("photo-1544551763-46a013bb70d5")
+        image: beach
       },
       {
         title: "Whale & Dolphin Watching",
         location: "Mirissa, Kalpitiya & Trincomalee",
         description: "Spotting Blue Whales, Sperm Whales, and spinner dolphins on ocean boat charters (Mirissa, Kalpitiya, Trincomalee).",
-        image: img("photo-1568430462629-a861758d7839")
+        image: img("photo-1507525428034-b723cf961d3e")
       },
       {
         title: "Kitesurfing",
