@@ -3,8 +3,24 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Activity from '../assets/images/Activities/Activity.jpg';
 import Activity1 from '../assets/images/Activities/Activity1.jpg';
 import Activity2 from '../assets/images/Activities/Activity2.jpg';
-import surf from '../assets/images/Activities/surf.jpg';
-import beach from '../assets/images/Activities/beach.jpg';
+import Snokling from '../assets/images/Activities/snokling.jpg';
+import Whalewatching from '../assets/images/Activities/whalewatching.jpg';
+import Kitesurfing from '../assets/images/Activities/kitesurfing.jpg';
+import Waterrafting from '../assets/images/Activities/waterrafting.jpg';
+import Yala4by4 from '../assets/images/Activities/Yala4by4.jpg';
+import ElephantGathering from '../assets/images/Activities/ElephantGathering.jpg';
+import BirdwatchingTour from '../assets/images/Activities/BirdwatchingTour.jpg';
+import Ellhiking from '../assets/images/Activities/ellhiking.jpg';
+import Adamspeak from '../assets/images/Activities/adamspeak.jpg';
+import Kandytoella from '../assets/images/Activities/kandytoella.jpg';
+import sigiriDabullaballon from '../assets/images/Activities/sigiriDabullaballon.jpg';
+import ParitiesBeach from '../assets/images/Activities/paritiesBeach.jpg';
+import TraditionalKandy from '../assets/images/Activities/TraditionalKandy.jpg';
+import streetFood from '../assets/images/Activities/streetFood.jpg';
+import favfood from '../assets/images/Activities/favfood.jpg';
+import teafactory from '../assets/images/Activities/teafactory.jpg';
+import ayurweda from '../assets/images/Activities/ayurweda.jpg';
+
 
 
 // Hero Slider Data (UNTOUCHED)
@@ -45,31 +61,31 @@ const categories = [
         title: "Surfing",
         location: "Weligama, Arugam Bay & Hikkaduwa",
         description: "World-class point breaks and reef breaks for all skill levels (beginner waves in Weligama; reef/point breaks in Arugam Bay and Hikkaduwa).",
-        image: surf
+        image: Activity1
       },
       {
         title: "Scuba Diving & Snorkeling",
         location: "Pigeon Island, Hikkaduwa & Trincomalee",
         description: "Shipwreck dives, coral reef exploration, and swimming with blacktip reef sharks or sea turtles (Pigeon Island, Hikkaduwa, Trincomalee).",
-        image: beach
+        image: Snokling
       },
       {
         title: "Whale & Dolphin Watching",
         location: "Mirissa, Kalpitiya & Trincomalee",
         description: "Spotting Blue Whales, Sperm Whales, and spinner dolphins on ocean boat charters (Mirissa, Kalpitiya, Trincomalee).",
-        image: img("photo-1507525428034-b723cf961d3e")
+        image: Whalewatching
       },
       {
         title: "Kitesurfing",
         location: "Kalpitiya Peninsula",
         description: "High-wind lagoon and open-ocean kitesurfing for beginners and pros (Kalpitiya Peninsula).",
-        image: img("photo-1516834474-48c0abc2a902")
+        image: Kitesurfing
       },
       {
         title: "White Water Rafting",
         location: "Kitulgala",
         description: "Navigating Class II–IV rapids through jungle rivers (Kitulgala).",
-        image: img("photo-1530866495561-507c9faab2ed")
+        image: Waterrafting
       }
     ]
   },
@@ -82,19 +98,19 @@ const categories = [
         title: "4x4 Jeep Safaris",
         location: "Yala, Wilpattu & Udawalawe",
         description: "Wildlife tracking and telephoto photography targeting leopards, Asian elephants, sloth bears, and crocodiles (Yala, Wilpattu, Udawalawe).",
-        image: img("photo-1544979590-37e9b47eb705")
+        image: Yala4by4
       },
       {
         title: "Elephant Gathering Tracking",
         location: "Minneriya & Kaudulla",
         description: "Observing herds of up to 300 wild elephants congregating around reservoir shores (Minneriya & Kaudulla).",
-        image: img("photo-1557050543-4d5f4e07ef46")
+        image: ElephantGathering
       },
       {
         title: "Bird Watching Tours",
         location: "Sinharaja Forest Reserve & Bundala",
         description: "Spotting endemic birds, hornbills, and migratory species in tropical rainforests (Sinharaja Forest Reserve, Bundala).",
-        image: img("photo-1511497584788-876761c11969")
+        image: BirdwatchingTour
       }
     ]
   },
@@ -107,25 +123,25 @@ const categories = [
         title: "High-Altitude Trekking",
         location: "Pekoe Trail, Ella Rock & Horton Plains",
         description: "Ridge walking and cloud-forest hiking through tea country peaks (Pekoe Trail, Ella Rock, Horton Plains / World's End).",
-        image: img("photo-1589308078059-be1415eab4c3")
+        image: Ellhiking
       },
       {
         title: "Night Pilgrimage Hikes",
         location: "Adam's Peak / Sri Pada",
         description: "Overnight stair climbs to catch sunrise above cloud level (Adam’s Peak / Sri Pada).",
-        image: img("photo-1506744038136-46273834b3fb")
+        image: Adamspeak
       },
       {
         title: "Scenic Train Rides",
         location: "Kandy to Ella line",
         description: "Open-window train journeys winding through misty tea plantations and viaduct bridges (Kandy to Ella line).",
-        image: img("photo-1546708973-b339540b5162")
+        image: Kandytoella
       },
       {
         title: "Hot Air Ballooning",
         location: "Sigiriya / Dambulla",
         description: "Sunrise flights over ancient rock fortresses, lakes, and jungle canopies (Sigiriya / Dambulla).",
-        image: img("photo-1507608616759-54f48f0af0ee")
+        image: sigiriDabullaballon
       }
     ]
   },
@@ -138,19 +154,19 @@ const categories = [
         title: "Coastal Music Events & Beach Parties",
         location: "South Coast & East Coast",
         description: "Sun-downer DJ sets, underground progressive/organic house parties, and live acoustic beach sessions (South Coast & East Coast strips).",
-        image: img("photo-1516450360452-9312f5e86fc7")
+        image: ParitiesBeach
       },
       {
         title: "Traditional Drumming & Kandyan Dance",
         location: "Kandy & Colombo",
         description: "Experiencing live Perahera processions, traditional drumming performances, and fire-walking rites (Kandy, Colombo).",
-        image: img("photo-1552465011-b4e21bf6e79a")
+        image: TraditionalKandy
       },
       {
         title: "Street Food & Night Market Walks",
         location: "Night street markets",
         description: "Tasting kottu roti, hoppers, and fresh seafood cooked live at night street markets.",
-        image: img("photo-1504674900247-0877df9cc836")
+        image: streetFood
       }
     ]
   },
@@ -163,19 +179,19 @@ const categories = [
         title: "Ayurvedic Spa & Wellness Retreats",
         location: "Bentota, Kandy & Tangalle",
         description: "Traditional herbal steam baths, oil massages (Abhyanga), and yoga retreats.",
-        image: img("photo-1540555700478-4be289fbecef")
+        image: ayurweda
       },
       {
         title: "Sri Lankan Cooking Masterclasses",
         location: "Ella, Galle & Sigiriya",
         description: "Farm-to-table culinary experiences learning to prepare authentic spice blends and clay-pot curries.",
-        image: img("photo-1556910103-1c02745aae4d")
+        image: favfood
       },
       {
         title: "Tea Tasting & Factory Tours",
         location: "Nuwara Eliya & Hatton",
         description: "Plucking tea leaves with estate workers and tasting single-origin Ceylon tea grades in hill-country factories.",
-        image: img("photo-1576092768241-dec231879fc3")
+        image: teafactory
       }
     ]
   }
