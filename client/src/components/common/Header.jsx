@@ -93,12 +93,6 @@ const Header = () => {
                   <NavLink to="/visa-entry-requirements" onClick={() => setIsPlanningMenuOpen(false)} className={dropdownNavLinkClass}>
                     Visa & Entry Requirements
                   </NavLink>
-                  <NavLink to="/media-coverage" onClick={() => setIsPlanningMenuOpen(false)} className={dropdownNavLinkClass}>
-                    Recent Media Coverage
-                  </NavLink>
-                  <NavLink to="/budget" onClick={() => setIsPlanningMenuOpen(false)} className={dropdownNavLinkClass}>
-                    Budget
-                  </NavLink>
                 </div>
               )}
             </div>
