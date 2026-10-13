@@ -40,37 +40,70 @@ export const HERO_SLIDES = [
 export const VILLAS = [
   {
     id: 1,
-    name: 'Cape Weligama Luxury Resort',
+    name: ' Heavens Edge Lodge & Spa ',
     location: 'Weligama, Southern Coast',
-    rating: 4.9,
-    price: '$350 / night',
+    rating: 4.8,
+    price: '7000LKR / night',
     description:
       'Relax above the Indian Ocean at this coastal resort, with spacious rooms, scenic views, and easy access to nearby beaches.',
     image: 'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=800&q=80',
-    tags: ['Ocean View', 'Private Pool', '5-Star'],
+    tags: ['Near to TIKIBAR Ocean View', 'Sunset vibe', 'Friendly staff'],
   },
   {
     id: 2,
-    name: 'Nine Skies Bungalow',
-    location: 'Ella, Hill Country',
+    name: 'Freedom Villa',
+    location: 'Weligama, Southern Coast',
     rating: 4.8,
-    price: '$280 / night',
+    price: '4000LKR / night',
     description:
       'Enjoy a peaceful countryside stay surrounded by tea country, mountain scenery, and the charm of a restored bungalow.',
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
-    tags: ['Tea Garden', 'Historic', 'Luxury'],
+    tags: ['Near to TIKIBAR Ocean View', 'Sunset vibe', 'Friendly staff'],
   },
   {
     id: 3,
-    name: 'Amanwella Villa',
-    location: 'Tangalle, South',
+    name: 'Freedom192 - Double Room With Garden View',
+    location: 'Weligama, Southern Coast',
     rating: 4.95,
-    price: '$450 / night',
+    price: '3600LKR / night',
     description:
       'Unwind by the southern coast with a secluded beach, relaxing spa experiences, and peaceful tropical surroundings.',
     image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
-    tags: ['Private Beach', 'Spa', 'Ocean View'],
+    tags: ['Near to TIKIBAR Ocean View', 'Sunset vibe', 'Friendly staff'],
   },
+  {
+    id: 3,
+    name: 'Castle Bay Resort',
+    location: 'Weligama, Southern Coast',
+    rating: 4.95,
+    price: '3600LKR / night',
+    description:
+      'Unwind by the southern coast with a secluded beach, relaxing spa experiences, and peaceful tropical surroundings.',
+    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
+    tags: ['Near to TIKIBAR Ocean View', 'Sunset vibe', 'Friendly staff'],
+  },
+  {
+    id: 4,
+    name: 'The Moose',
+    location: 'Weligama, Southern Coast',
+    rating: 4.95,
+    price: '11400LKR / night',
+    description:
+      'Unwind by the southern coast with a secluded beach, relaxing spa experiences, and peaceful tropical surroundings.',
+    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
+    tags: ['Near to TIKIBAR Ocean View', 'Sunset vibe', 'Friendly staff'],
+  },
+  {
+    id: 5,
+    name: 'The Moose',
+    location: 'Weligama, Southern Coast',
+    rating: 4.95,
+    price: '11400LKR / night',
+    description:
+      'Unwind by the southern coast with a secluded beach, relaxing spa experiences, and peaceful tropical surroundings.',
+    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80',
+    tags: ['Near to TIKIBAR Ocean View', 'Sunset vibe', 'Friendly staff'],
+  }
 ]
 
 export const DESTINATIONS = [
