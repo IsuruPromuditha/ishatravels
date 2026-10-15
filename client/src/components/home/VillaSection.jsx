@@ -23,7 +23,7 @@ const VillaSection = () => {
 
         {VILLAS.length > 0 ? (
           <div className="grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {VILLAS.slice(0, 4).map((villa, index) => (
+            {VILLAS.slice(0, 6).map((villa, index) => (
               <article
                 key={villa.id ?? villa.name ?? index}
                 className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-slate-900 shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-emerald-400/40 hover:shadow-2xl hover:shadow-emerald-950/40"
