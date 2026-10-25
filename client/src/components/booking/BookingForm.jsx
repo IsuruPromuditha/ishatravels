@@ -1,6 +1,6 @@
 // src/components/booking/BookingForm.jsx
 import React from 'react';
-import { useBookingController } from '../../controllers/useBookingController';
+import { useBookingController } from '../../../../server/controller/useBookingController';
 
 const inputClass =
   'w-full text-xs bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:outline-none';
