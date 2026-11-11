@@ -60,7 +60,7 @@ const Header = () => {
                 Love Sri Lanka
               </span>
               <span className="mt-1 block text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                Official Travel Portal
+                ISHA TRAVEL
               </span>
             </span>
           </Link>

@@ -463,7 +463,7 @@ const TourPackages = () => {
               </div>
               <div>
                 <strong className="text-white block mb-1">Currency & Payments</strong>
-                Carry Sri Lankan Rupees (LKR) in smaller denominations for local tuk-tuks, fruit stalls, and regional entry tickets.
+                Carry Sri Lankan Rupees  in smaller denominations for local tuk-tuks, fruit stalls, and regional entry tickets.
               </div>
             </div>
           </div>
