@@ -324,7 +324,7 @@ const ActivityModal = ({ activity, isFavourite, onToggleFavourite, onClose }) =>
           </div>
 
           <div className="mb-8">
-            <p className="text-sm font-semibold mb-2">About this experience</p>
+            <p className="text-sm font-semibold mb-2">About this experiences</p>
             <p className="text-base leading-relaxed text-black/80">{activity.description}</p>
           </div>
 
