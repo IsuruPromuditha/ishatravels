@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 
 // Vehicle photos: add these files to src/assets/images/
-import carAlto from '../assets/images/CarAlto.jpg'
+import carAlto from '../assets/images/car/normal-car.jpg'
 import carAxio from '../assets/images/CarAxio.jpg'
 import carVitara from '../assets/images/CarVitara.jpg'
 import carPrado from '../assets/images/CarPrado.jpg'
