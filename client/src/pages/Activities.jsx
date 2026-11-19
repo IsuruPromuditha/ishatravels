@@ -411,7 +411,7 @@ const Activities = () => {
                 {slide.subtitle}
               </p>
               <button className="px-6 py-3 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105">
-                Discover Experience
+                Discover Experience 
               </button>
             </div>
           </div>
@@ -449,10 +449,10 @@ const Activities = () => {
       {/* Main Section Header */}
       <header className="text-center max-w-3xl mx-auto mb-8 px-5">
         <h2 className="text-3xl md:text-4xl font-bold text-black mb-3 tracking-tight">
-          Outdoor Activities & Experiences
+          Outdoor Activities & Experiences in Sri Lanka
         </h2>
         <p className="text-sm md:text-base text-black/70">
-          Explore adventures, wildlife, mountain trails, culture, and local flavours across Sri Lanka.
+          Explore adventures, wildlife moments , mountain trails, culture, and local flavours across Sri Lanka.
         </p>
       </header>
 
